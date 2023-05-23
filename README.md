@@ -23,7 +23,7 @@ Leftover Link is a full-stack application that aims to bridge the gap between lo
 
 To get a local copy of the project up and running, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/leftover-link.git`
+1. Clone the repository: `git clone https://github.com/vjz3qz/leftover-link.git`
 2. Navigate to the project directory: `cd leftover-link`
 3. Install the dependencies for the client-side: `cd client && npm install`
 4. Install the dependencies for the server-side: `cd server && npm install`
