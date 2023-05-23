@@ -52,7 +52,7 @@ This project is licensed under the [MIT License](LICENSE).
 If you have any questions or suggestions regarding Leftover Link, please feel free to reach out to us:
 
 - Varun Pasupuleti: vjz3qz@virginia.edu
-- Niket Anand: email
+- Niket Anand: fcj9vk@virginia.edu
 - Darsh Devkar: email
 
 We appreciate your interest in making a difference in the sustainability climate and helping us address food waste and hunger in our communities. Thank you for joining us on this mission!
