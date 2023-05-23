@@ -53,7 +53,7 @@ If you have any questions or suggestions regarding Leftover Link, please feel fr
 
 - Varun Pasupuleti: vjz3qz@virginia.edu
 - Niket Anand: fcj9vk@virginia.edu
-- Darsh Devkar: email
+- Darsh Devkar: smt3ft@virginia.edu
 
 We appreciate your interest in making a difference in the sustainability climate and helping us address food waste and hunger in our communities. Thank you for joining us on this mission!
 
