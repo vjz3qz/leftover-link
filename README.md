@@ -1,4 +1,4 @@
-# Leftover Link
+# Leftover Link 🍣
 
 Leftover Link is a full-stack application that aims to bridge the gap between local restaurants and homeless shelters, facilitating the donation of unused food before it goes to waste. Our mission is to provide fresh and nutritious meals to those in need while reducing food waste in our communities. This repository contains the source code and documentation for the Leftover Link application.
 
@@ -51,9 +51,9 @@ This project is licensed under the [MIT License](LICENSE).
 
 If you have any questions or suggestions regarding Leftover Link, please feel free to reach out to us:
 
-- Email: leftoverlink@example.com
-- Twitter: [@leftoverlink](https://twitter.com/leftoverlink)
-- Website: [www.leftoverlink.com](https://www.leftoverlink.com)
+- Varun Pasupuleti: vjz3qz@virginia.edu
+- Niket Anand: email
+- Darsh Devkar: email
 
 We appreciate your interest in making a difference in the sustainability climate and helping us address food waste and hunger in our communities. Thank you for joining us on this mission!
 
