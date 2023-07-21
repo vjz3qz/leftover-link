@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Back end for Leftover Love",
+  "description": "Back end for Leftover Link",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
