@@ -1,6 +1,6 @@
 # Leftover Link 🍣
 
-Leftover Link is a full-stack application that aims to bridge the gap between local restaurants and homeless shelters, facilitating the donation of unused food before it goes to waste. Our mission is to provide fresh and nutritious meals to those in need while reducing food waste in our communities. This repository contains the source code and documentation for the Leftover Link application.
+Leftover Link is a full-stack application with a mission to bridge the gap between local restaurants and homeless shelters, facilitating the donation of unused food before it goes to waste. Our primary goal is to provide fresh and nutritious meals to those in need while reducing food waste in our communities. This repository contains the source code and documentation for both the client-side (front-end) and server-side (back-end) modules of the Leftover Link application.
 
 ## Features
 
@@ -13,11 +13,20 @@ Leftover Link is a full-stack application that aims to bridge the gap between lo
 
 ## Technologies Used
 
-- React.js: Used for building the client-side of the application, providing a responsive and interactive user interface.
-- Express.js and Node.js: Utilized for building the server-side of the application, handling requests and managing data flow.
+- React.js: Used for building the front-end of the application, providing a responsive and interactive user interface.
+- Express.js and Node.js: Utilized for building the back-end of the application, handling requests, and managing data flow.
 - MongoDB/Mongoose: Chosen for data persistence and schema creation, ensuring efficient storage and retrieval of information.
 - Google Maps API: Integrated to display restaurants and donation locations on an interactive map.
 - Postman: Employed for testing the RESTful APIs to ensure reliability and functionality.
+
+
+
+We appreciate your interest in making a difference in the sustainability climate and helping us address food waste and hunger in our communities. Thank you for joining us on this mission! Together, one meal at a time, we can make a difference.
+
+
+<!---
+- Heroku: Used for deployment of the application, making it accessible to users.
+
 
 ## Getting Started
 
@@ -54,8 +63,5 @@ If you have any questions or suggestions regarding Leftover Link, please feel fr
 - Varun Pasupuleti: vjz3qz@virginia.edu
 - Niket Anand: fcj9vk@virginia.edu
 - Darsh Devkar: smt3ft@virginia.edu
-
-We appreciate your interest in making a difference in the sustainability climate and helping us address food waste and hunger in our communities. Thank you for joining us on this mission!
-
-One meal at a time, we can make a difference.
+-->
 
