@@ -5,7 +5,7 @@ import { Link } from 'react-scroll';
 
 const Home = () => {
   useEffect(() => {
-    const text = new SplitType('#heading','#text');
+    const text = new SplitType('#heading', '#text');
     const characters = document.querySelectorAll('.char');
   
     for (let i = 0; i < characters.length; i++) {
@@ -38,11 +38,7 @@ const Home = () => {
         clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
         WebkitClipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)', // For WebKit compatibility
       }}> 
-        Welcome to Leftover Link {''}
-        <Link to="about"
-              smooth={true}
-              duration={1000}><span className="text-2xl inline-block">🍣</span>
-        </Link>
+        Welcome to Leftover Link 🍣
    </h1>
    <p 
     id="text"
