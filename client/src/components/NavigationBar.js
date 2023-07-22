@@ -5,7 +5,7 @@ import logo from '../styles/HooHacksLogo2.png';
 
 function NavigationBar() {
     return (
-<div>
+        <div>
           <div>
             <Link to="home"
             smooth={true}
