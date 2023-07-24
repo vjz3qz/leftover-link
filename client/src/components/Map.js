@@ -52,15 +52,16 @@ const Map = () => {
   };
   
   return (
-    loading ? <div>Loading...</div> :
-    <div className="map" style={{ height: '500px', width: '100%' }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: api_key }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
-        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-      />
-    </div>
+    // loading ? <div>Loading...</div> :
+    <div className="w-full h-full flex-1">
+    <GoogleMapReact
+      bootstrapURLKeys={{ key: api_key }}
+      defaultCenter={defaultProps.center}
+      defaultZoom={defaultProps.zoom}
+      onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+      yesIWantToUseGoogleMapApiInternals
+    />
+  </div>
   );
 };
 
