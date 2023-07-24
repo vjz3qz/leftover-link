@@ -33,6 +33,7 @@ function About() {
         <p className="text-lg leading-relaxed">
           We are three UVA students who are passionate about sustainability and helping the community. We built this app to connect local restaurants with nearby homeless shelters to donate unused food before it expires. Our goal is to reduce food waste while helping those in need. 
         </p>
+        <div className="flex flex-row space-x-4">
         <Card
             name="Varun Pasupuleti"
             description="Varun is a third year studying Computer Science."
@@ -41,6 +42,7 @@ function About() {
             linkedin="https://www.linkedin.com/in/varunpasupuleti/"
             portfolio="https://vjz3qz.github.io/portfolio/"
          />
+        </div>
       </div>
     </section>
   );
