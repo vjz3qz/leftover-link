@@ -42,6 +42,14 @@ function About() {
             linkedin="https://www.linkedin.com/in/varunpasupuleti/"
             portfolio="https://vjz3qz.github.io/portfolio/"
          />
+         <Card
+            name="Niket Anand"
+            description="Niket is a third year studying Computer Science and Math at UVA. "
+            image={`${process.env.PUBLIC_URL}/images/niket.jpg`}
+            github="lol"
+            linkedin="https://www.linkedin.com/in/niket-anand-236896229/"
+            portfolio="lol"
+         />
         </div>
       </div>
     </section>
