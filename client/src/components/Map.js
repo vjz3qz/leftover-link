@@ -52,8 +52,8 @@ const Map = () => {
   };
   
   return (
-    // loading ? <div>Loading...</div> :
-    <div className="w-full h-full flex-1">
+    loading ? <div>Loading...</div> :
+    <div className="w-full h-full flex-1 border-4 border-gray-500 rounded-lg overflow-hidden">
     <GoogleMapReact
       bootstrapURLKeys={{ key: api_key }}
       defaultCenter={defaultProps.center}
