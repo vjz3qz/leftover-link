@@ -1,0 +1,39 @@
+import React from "react";
+
+function Card(props) {
+    return (
+        <div>
+            <div className="max-w-sm rounded overflow-hidden shadow-lg">
+                <img className="w-full" src={props.image} alt="Sunset in the mountains" />
+                <div className="px-6 py-4">
+                    <div className="font-bold text-xl mb-2">{props.name}</div>
+                    <p className="text-gray-700 text-base">
+                        {props.description}
+                    </p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function About() {
+  return (
+    <section id="about" className=" p-8">
+      <div className="max-w-3xl mx-auto text-center">
+        <h1 className="text-3xl lg:text-4xl font-bold mb-4">About Us</h1>
+        <p className="text-lg leading-relaxed">
+          We are three UVA students who are passionate about sustainability and helping the community. We built this app to connect local restaurants with nearby homeless shelters to donate unused food before it expires. Our goal is to reduce food waste while helping those in need. 
+        </p>
+        <Card
+            name="Varun Pasupuleti"
+            description="Varun is a third year studying Computer Science."
+            image="https://avatars.githubusercontent.com/u/60692241?v=4"
+            github="https://github.com/vjz3qz"
+            linkedin="https://www.linkedin.com/in/varunpasupuleti/"
+         />
+      </div>
+    </section>
+  );
+}
+
+export default About;

@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React from 'react';
 import Home from './pages/Home';
 import Mission from './pages/Mission';
+import About from './pages/About';
 import Contact from './pages/Contact';
-import AddFood from "./pages/AddFood";
 import NavigationBar from './components/NavigationBar';
 
 function App() {
@@ -13,6 +12,7 @@ function App() {
       <NavigationBar />
       <Home />
       <Mission />
+      <About />
       <Contact />
     </div>
   );

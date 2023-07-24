@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import SplitType from "split-type";
 import gsap from "gsap";
-import { Link } from 'react-scroll';
 
 const Home = () => {
   useEffect(() => {
@@ -47,7 +46,7 @@ const Home = () => {
       clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
       WebkitClipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)', // For WebKit compatibility
   }}>
-    One Restaurant to One Shelter at a Time.
+    One meal at a time.
   </p>
 </div> 
   </section>
@@ -55,8 +54,3 @@ const Home = () => {
 };
 
 export default Home;
-
-{/* 
-            Leftover Link is an app that connects local restaurants with nearby homeless shelters to donate unused food before it expires. Our goal is to reduce food waste while helping those in need. Join us in making a difference today!
-            Leftover Link's mission is to bridge the gap between local restaurants and homeless shelters, by providing a platform that facilitates the donation of unused food before it goes to waste. We believe that everyone deserves access to fresh and nutritious meals, and that we can reduce food waste while addressing hunger in our communities. Our app provides a simple and easy-to-use solution for restaurants and shelters to connect and make a positive impact on people's lives. Join us in our mission to make a difference today, one meal at a time.
-*/}

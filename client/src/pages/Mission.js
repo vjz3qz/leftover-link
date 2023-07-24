@@ -1,4 +1,5 @@
 import React from "react";
+import Map from "../components/Map";
 
 function Mission() {
   return (
@@ -9,6 +10,7 @@ function Mission() {
           Many restaurants and dining halls have copious amounts of food waste and we wanted to address this.
           Our main goal is to make a difference in the sustainability climate and find a way to connect these leftover vendors with homeless shelters.
         </p>
+        <Map />
       </div>
     </section>
   );
