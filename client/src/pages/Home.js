@@ -17,6 +17,7 @@ const Home = () => {
       delay: 0.02,
       duration: 0.5
     });
+    document.querySelector('#text').classList.add('char');
   }, []);
 
   return (<section id="home"
