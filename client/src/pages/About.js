@@ -1,20 +1,29 @@
 import React from "react";
 
+
 function Card(props) {
     return (
         <div>
-            <div className="max-w-sm rounded overflow-hidden shadow-lg">
-                <img className="w-full" src={props.image} alt="Sunset in the mountains" />
+            <div className="max-w-sm rounded overflow-hidden shadow-lg bg-yellow-50">
+                <img className="pt-5 w-full h-52 object-contain" src={props.image} alt="Sunset in the mountains" />
                 <div className="px-6 py-4">
                     <div className="font-bold text-xl mb-2">{props.name}</div>
                     <p className="text-gray-700 text-base">
                         {props.description}
                     </p>
+                    <div>
+
+                    <a href={props.github} className="px-2 underline">Github</a>
+                        <a href={props.linkedin} className="px-2 underline">LinkedIn</a>
+
+                        <a href={props.portfolio} className="px-2 underline">Portfolio</a>
+                    </div>
                 </div>
             </div>
         </div>
     );
 }
+
 
 function About() {
   return (
@@ -27,9 +36,10 @@ function About() {
         <Card
             name="Varun Pasupuleti"
             description="Varun is a third year studying Computer Science."
-            image="https://avatars.githubusercontent.com/u/60692241?v=4"
+            image={`${process.env.PUBLIC_URL}/images/varun.jpg`}
             github="https://github.com/vjz3qz"
             linkedin="https://www.linkedin.com/in/varunpasupuleti/"
+            portfolio="https://vjz3qz.github.io/portfolio/"
          />
       </div>
     </section>
