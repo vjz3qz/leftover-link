@@ -47,7 +47,7 @@ const Home = () => {
       clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)',
       WebkitClipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)', // For WebKit compatibility
   }}>
-    Bridge the Gap, One Shelter to One Restaurant at a Time.
+    One Restaurant to One Shelter at a Time.
   </p>
 </div> 
   </section>
