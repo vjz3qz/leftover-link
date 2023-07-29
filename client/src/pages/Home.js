@@ -11,7 +11,7 @@ const Home = () => {
       characters[i].classList.add('translate-y-full');
     }
 
-    gsap.to('.char', {
+    gsap.to('.char, .text', {
       y:0,
       stagger: 0.05, 
       delay: 0.02,

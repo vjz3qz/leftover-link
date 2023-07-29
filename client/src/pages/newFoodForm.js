@@ -41,7 +41,6 @@ const NewFoodForm = ({ restaurantId }) => {
     <div>
       <h2>Add Food</h2>
       <form>
-        {/* Input fields */}
         <button type="button" onClick={handleAddFood}>
           Add Food
         </button>
