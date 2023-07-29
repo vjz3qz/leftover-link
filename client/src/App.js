@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Mission from './pages/Mission';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import FoodForm from './pages/newFoodForm.js';
 import NavigationBar from './components/NavigationBar';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Home />
       <Mission />
       <hr class="w-1/2 h-1 mx-auto my-4 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700" />
+      <FoodForm />
       <About />
       <Contact />
     </div>
