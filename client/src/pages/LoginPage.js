@@ -1,6 +1,6 @@
 import {useContext, useState} from "react";
 import {Navigate} from "react-router-dom";
-import {UserContext} from "../UserContext";
+import {UserContext} from "../contexts/UserContext";
 
 export default function LoginPage() {
   const [username,setUsername] = useState('');
