@@ -1,10 +1,10 @@
 import React from "react";
 import FoodForm from "../components/FoodForm";
 
-const FoodTracker = () => {
+const FoodTracker = ({ restaurantId }) => {
   return (
     <div className="add-food-container">
-      <FoodForm />
+      <FoodForm restaurantId={restaurantId} />
     </div>
   );
 };

@@ -1,9 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Restaurant = require('./models/Restaurant');
-const restaurantRoutes = require('./routes/restaurantRoutes');
-const foodRoutes = require('./routes/foodRoutes');
-const shelterRoutes = require('./routes/shelterRoutes');
+const restaurantRoutes = require('./routes/RestaurantRoutes');
+const foodRoutes = require('./routes/FoodRoutes');
+const shelterRoutes = require('./routes/ShelterRoutes');
 const cors = require('cors');
 require('dotenv').config();
 
