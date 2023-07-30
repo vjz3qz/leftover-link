@@ -2,6 +2,16 @@
 const mongoose = require('mongoose');
 
 const restaurantSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true
+    
+  },
+  password: {
+    type: String,
+    required: true
+  },
   name: {
     type: String,
     required: true
@@ -18,21 +28,13 @@ const restaurantSchema = new mongoose.Schema({
     type: [Number],
     required: true
   },
-  username: {
-    type: String,
-    required: true,
-    unique: true
-    
-  },
-  password: {
-    type: String,
-    required: true
-  },
   foods: [{
     type: mongoose.Schema.Types.ObjectId,//linking food and restaurant together
     ref: 'Food'
   }]
 });
+
+restaurantSchema.index({ username: 1 }, { unique: true });
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
