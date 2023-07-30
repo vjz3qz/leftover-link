@@ -1,102 +1,148 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React, { useState } from "react";
 
-const FoodForm = () => {
-  const [name, setName] = useState('');
-  const [unit, setUnit] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [expirationDate, setExpirationDate] = useState('');
-  const [restaurant, setRestaurant] = useState('');
-  const [restaurants, setRestaurants] = useState([]);
+const FoodForm = ({ restaurantId }) => {
+  const [name, setName] = useState("");
+  const [unit, setUnit] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [expirationDate, setExpirationDate] = useState("");
 
-  
+  const handleAddFood = async () => {
+    try {
+      const newFood = {
+        name,
+        unit,
+        quantity,
+        expirationDate,
+      };
 
-  // Fetch the list of restaurants on component mount
-  useEffect(() => {
-    fetch('http://localhost:1234/api/restaurants')
-      .then(response => response.json())
-      .then(data => setRestaurants(data))
-      .catch(error => console.error(error));
-  }, []);
+      const response = await fetch(
+        `/api/restaurants/add-food/${restaurantId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newFood),
+        }
+      );
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = {
-      name,
-      unit,
-      quantity,
-      expirationDate,
-      restaurant,
-    };
-    const response = await fetch('http://localhost:1234/api/food', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
-    if (response.ok) {
-        const data = await response.json();
-        setName('');
-        setUnit('');
-        setQuantity('');
-        setExpirationDate('');
-        setRestaurant('');
-        alert('Food added successfully!');
-        console.log(data);
-        console.log(data.food); // log the saved food object
-        console.log(data.restaurant); // log the saved restaurant object
-      console.log(response);
-    } else {
-      alert('Something went wrong. Please try again.');
+      if (response.ok) {
+        console.log("Food added successfully");
+        setName("");
+        setUnit("");
+        setQuantity("");
+        setExpirationDate("");
+      } else {
+        console.log("Failed to add food");
+      }
+    } catch (error) {
+      console.error("Error adding food:", error);
     }
   };
 
   return (
-    <Form style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }} onSubmit={handleSubmit}>
-      <h2 style={{ textAlign: 'center' }}>Add Food Item</h2>
-      <Form.Group controlId="formName">
-        <Form.Label style={{paddingLeft: "17px", paddingRight: "px", textAlign: "left", fontSize: "17px"}}>
-          Name
-        </Form.Label>
-        <Form.Control type="text" placeholder="Bread" value={name} onChange={(e) => setName(e.target.value)} required 
-        style={{width:"150px"}}/>
-      </Form.Group>
-
-      <Form.Group controlId="formUnit">
-        <Form.Label style={{paddingLeft: "2px", paddingRight: "8px", textAlign: "left", fontSize: "17px"}}>
-          Unit
-        </Form.Label>
-        <Form.Control type="text" placeholder="Loafs" value={unit} onChange={(e) => setUnit(e.target.value)} required style={{width:"150px"}}/>
-      </Form.Group>
-
-      <Form.Group controlId="formQuantity">
-        <Form.Label style={{paddingLeft: "35px", paddingRight: "8px", textAlign: "left", fontSize: "17px"}}>
-          Quantity
-        </Form.Label>
-        <Form.Control type="text" placeholder="8" value={quantity} onChange={(e) => setQuantity(e.target.value)} required style={{width:"150px"}}/>
-      </Form.Group>
-
-      <Form.Group controlId="formExpirationDate">
-        <Form.Label style={{paddingLeft: "33px",paddingRight: "8px", textAlign: "left", fontSize: "17px"}}>
-          Expiration Date
-        </Form.Label>
-        <Form.Control type="date" placeholder="Enter expiration date" value={expirationDate} onChange={(e) => setExpirationDate(e.target.value)} required />
-      </Form.Group>
-
-      <Form.Group controlId="formRestaurant">
-        <Form.Label style={{paddingTop:"200px", paddingLeft: "25px", paddingRight: "8px", textAlign: "left", fontSize: "17px"}}>
-          Restaurant
-        </Form.Label>
-        <Form.Control as="select" value={restaurant} onChange={(e) => setRestaurant(e.target.value)} required>
-          <option value=""> Select a restaurant </option>
-          {restaurants.map(restaurant => <option key={restaurant._id} value={restaurant._id}>{restaurant.name}</option>)}
-        </Form.Control>
-      </Form.Group>
-      <h style={{paddingTop:"4px", fontSize:"200px"}}>
-      </h>
-      <Button variant="primary" type="submit" style={{ display: 'block', margin: 'auto',}}>
-        Submit
-      </Button>
-    </Form>
+    <section id="foodform" className="p-8">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-center">
+          Food Form
+        </h1>
+        <p className="text-lg leading-relaxed mb-6">
+          Welcome to the Food Form page! Add leftover food items from your
+          restaurant to our database. Together, we can make a positive impact on
+          reducing food waste and connecting with those in need. Thank you for
+          your contribution!
+        </p>
+        <form className="space-y-4">
+          <div>
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+              style={{ fontSize: "20px" }}
+            >
+              Food Name:
+            </label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Enter Food Name..."
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="unit"
+              className="block text-sm font-medium text-gray-700"
+              style={{ fontSize: "20px" }}
+            >
+              Unit:
+            </label>
+            <input
+              type="text"
+              id="unit"
+              value={unit}
+              onChange={(e) => setUnit(e.target.value)}
+              required
+              className="border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Enter Units..."
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="quantity"
+              className="block text-sm font-medium text-gray-700"
+              style={{ fontSize: "20px" }}
+            >
+              Quantity:
+            </label>
+            <input
+              type="number"
+              id="quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              required
+              className="border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Enter Quantity..."
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="expirationDate"
+              className="block text-sm font-medium text-gray-700"
+              style={{ fontSize: "20px" }}
+            >
+              Expiration Date:
+            </label>
+            <input
+              type="date"
+              id="expirationDate"
+              value={expirationDate}
+              onChange={(e) => setExpirationDate(e.target.value)}
+              required
+              className="border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          <button
+            type="button"
+            onClick={handleAddFood}
+            className={`
+            rounded-2xl border-1 border-black
+            bg-sunset_orange
+            px-6 py-3
+            font-semibold uppercase text-white
+            hover:rounded-md
+            hover:bg-another_sunset
+            transition-all durtation-300
+          `}
+          >
+            Add Food
+          </button>
+        </form>
+      </div>
+      <hr className="w-1/2 h-1 mx-auto my-4 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700" />
+    </section>
   );
 };
 
