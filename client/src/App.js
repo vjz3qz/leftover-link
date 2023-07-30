@@ -10,7 +10,9 @@ import FoodTracker from "./pages/FoodTracker";
 function App() {
   const [Login, setLogin] = useState(false);
   const { restaurantInfo } = useContext(UserContext);
-  
+  if (Object.keys(restaurantInfo).length > 0) { // if the user is logged in
+    setLogin(true);
+  }
   return (
     <div className="App">
       <NavigationBar />
