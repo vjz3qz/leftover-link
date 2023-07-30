@@ -13,6 +13,8 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+
 // Get a specific food item
 router.get('/:id', async (req, res) => {
   try {

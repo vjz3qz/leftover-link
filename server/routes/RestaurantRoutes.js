@@ -293,6 +293,19 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// TODO: Delete all restaurants
+// Get all foods from a specific restaurant
+router.get('/restaurant/:restaurantId', async (req, res) => {
+  try {
+    const restaurantId = req.params.restaurantId;
+    const restaurant = await Restaurant.findById(restaurantId);
+    if (!restaurant) {
+      return res.status(404).json({ message: 'Restaurant not found' });
+    }
 
+    const foods = await Food.find({ restaurant: restaurantId });
+    res.json(foods);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 module.exports = router;
