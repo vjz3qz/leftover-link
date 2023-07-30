@@ -13,10 +13,9 @@ import Contact from "./pages/Contact";
 import NavigationBar from "./components/NavigationBar";
 import FoodTracker from "./pages/FoodTracker";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
-  const { restaurantInfo } = useContext(UserContext);
-
   return (
     <Router>
       <AppContent />
@@ -38,6 +37,7 @@ function AppContent() {
             <div>
               <Home />
               <Mission />
+              <hr className="w-1/2 h-1 mx-auto my-4 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700" />
               <About />
               <Contact />
             </div>
@@ -45,13 +45,8 @@ function AppContent() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/food-tracker" element={<FoodTracker />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
-      {restaurantInfo && Object.keys(restaurantInfo).length > 0 && (
-        <div>
-          <FoodTracker />
-          <hr className="w-1/2 h-1 mx-auto my-4 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700" />
-        </div>
-      )}
     </div>
   );
 }

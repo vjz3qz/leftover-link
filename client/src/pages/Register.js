@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 
-export default function Login() {
+export default function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
@@ -11,43 +11,36 @@ export default function Login() {
 
   const navigate = useNavigate(); // call the useNavigate hook here
 
-  async function login(ev) {
+  async function register(ev) {
     ev.preventDefault();
-    const response = await fetch("/api/restaurants/login", {
+    const response = await fetch("/api/restaurants/register", {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
-      credentials: "include",
     });
-    if (response.ok) {
+    if (response.status === 200) {
       response.json().then((userInfo) => {
         setUserInfo(userInfo);
         setRedirect(true);
       });
     } else {
-      setError("wrong credentials");
+      setError("registration failed");
     }
   }
 
   const goToHome = () => {
     navigate("/");
   };
-
-  const goToRegister = () => {
-    navigate("/register");
-  };
-
   if (redirect) {
     return <Navigate to={"/"} />;
   }
-
   return (
-    <section id="login" className="p-8">
+    <section id="register" className="p-8">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-center">
-          Login
+          Register
         </h1>
-        <form className="space-y-4" onSubmit={login}>
+        <form className="space-y-4" onSubmit={register}>
           <div>
             <label
               htmlFor="username"
@@ -96,21 +89,6 @@ export default function Login() {
             transition-all durtation-300
           `}
           >
-            Login
-          </button>
-          <button
-            type="button"
-            onClick={goToRegister}
-            className={`
-            rounded-2xl border-1 border-black
-            bg-sunset_orange
-            px-6 py-3
-            font-semibold uppercase text-white
-            hover:rounded-md
-            hover:bg-another_sunset
-            transition-all durtation-300
-          `}
-          >
             Register
           </button>
           <button
@@ -128,7 +106,6 @@ export default function Login() {
           >
             Back to Home
           </button>
-          {error && <div className="error">{error}</div>}
         </form>
       </div>
     </section>

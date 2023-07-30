@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 import { Link as ScrollLink } from "react-scroll";
 import { Link as RouterLink } from "react-router-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function NavigationBar() {
+  const { restaurantInfo } = useContext(UserContext);
   return (
     <div>
       <nav className="bg-yellow-50 dark:bg-gray-700 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
@@ -110,12 +111,14 @@ function NavigationBar() {
               </li>
               <li>
                 <div className="bg-yellow-50 dark:bg-gray-700">
-            <RouterLink
-              to="/food-tracker"
-              className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-            >
-              Food Tracker
-            </RouterLink>
+                  {restaurantInfo && Object.keys(restaurantInfo).length > 0 && (
+                    <RouterLink
+                      to="/food-tracker"
+                      className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Food Tracker
+                    </RouterLink>
+                  )}
                 </div>
               </li>
             </ul>
