@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Shelter = require('../models/shelter');
+const Shelter = require('../models/Shelter');
 
 // Get all shelters
 router.get('/', async (req, res) => {
