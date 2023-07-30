@@ -293,19 +293,21 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// Get all foods from a specific restaurant
-router.get('/restaurant/:restaurantId', async (req, res) => {
+/// Get all foods from a specific restaurant
+router.get('/:username/get-all-food', async (req, res) => {
   try {
-    const restaurantId = req.params.restaurantId;
-    const restaurant = await Restaurant.findById(restaurantId);
+    const restaurantUsername = req.params.username;
+    const restaurant = await Restaurant.findOne({ username: restaurantUsername });
+
     if (!restaurant) {
       return res.status(404).json({ message: 'Restaurant not found' });
     }
 
-    const foods = await Food.find({ restaurant: restaurantId });
+    const foods = await Food.find({ restaurant: restaurant._id });
     res.json(foods);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
+
 module.exports = router;
