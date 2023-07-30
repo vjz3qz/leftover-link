@@ -7,7 +7,7 @@ const Inventory = () => {
     // Fetch the restaurant data and its inventory items from your API
     const fetchInventoryData = async () => {
       try {
-        const response = await fetch('/api/restaurants/restaurant-id/inventory');
+        const response = await fetch('/api/restaurants/:username/inventory');
         if (response.ok) {
           const data = await response.json();
           setInventoryItems(data.inventoryItems);
