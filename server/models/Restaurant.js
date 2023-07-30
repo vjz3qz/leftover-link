@@ -10,12 +10,22 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  address: {
+  address: {  
     type: String,
     required: true
   },
   coordinates: {
     type: [Number],
+    required: true
+  },
+  username: {
+    type: String,
+    required: true,
+    unique: true
+    
+  },
+  password: {
+    type: String,
     required: true
   },
   foods: [{
