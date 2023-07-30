@@ -5,9 +5,64 @@ const axios = require('axios');
 const Food = require('../models/Food');
 require('dotenv').config();
 const apiKey = process.env.REACT_APP_API_KEY;
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+
 
 // TODO: update all error messages and returns
 // TODO: test all requests
+
+const secret = '1234567890asdfghjkl'; // Replace 'your_secret_key_here' with a strong secret key
+
+// Login route
+router.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const restaurant = await Restaurant.findOne({ username });
+
+    if (!restaurant) {
+      return res.status(404).json({ error: 'Restaurant not found' });
+    }
+
+    const isPasswordValid = bcrypt.compareSync(password, restaurant.password);
+
+    if (isPasswordValid) {
+      const token = jwt.sign({ id: restaurant._id }, secret, { expiresIn: '1h' });
+      res.cookie('token', token, { httpOnly: true, maxAge: 3600000 }).json({
+        id: restaurant._id,
+        username: restaurant.username,
+        message: 'Login successful'
+      });
+    } else {
+      res.status(401).json({ error: 'Invalid username or password' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to login', originalError: err.message });
+  }
+});
+
+// Register route
+router.post('/register', async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const existingRestaurant = await Restaurant.findOne({ username });
+    if (existingRestaurant) {
+      return res.status(409).json({ error: 'Username already taken' });
+    }
+
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    const newRestaurant = await Restaurant.create({ username, password: hashedPassword });
+
+    res.status(201).json({
+      id: newRestaurant._id,
+      username: newRestaurant.username,
+      message: 'Registration successful'
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to register restaurant', originalError: err.message });
+  }
+});
+
 
 // Get all restaurants
 router.get('/', async (req, res) => {
