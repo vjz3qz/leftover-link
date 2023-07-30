@@ -41,18 +41,32 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Register route
+// Create a new restaurant with coordinates and register the user
 router.post('/register', async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, name, address, email } = req.body;
   try {
+    // Check if the username already exists in the database
     const existingRestaurant = await Restaurant.findOne({ username });
     if (existingRestaurant) {
       return res.status(409).json({ error: 'Username already taken' });
     }
 
-    const hashedPassword = bcrypt.hashSync(password, 10);
-    const newRestaurant = await Restaurant.create({ username, password: hashedPassword });
+    // Create a new restaurant document with the provided details
+    const coordinates = await convertAddressToCoords(address);
+    const restaurant = new Restaurant({
+      name,
+      email,
+      address,
+      coordinates,
+      username,
+      password: bcrypt.hashSync(password, 10)
+    });
+    const newRestaurant = await restaurant.save();
 
+    // At this point, the restaurant document is created and saved in the database.
+    // You can also add any additional logic or validation you require for the user registration process.
+
+    // Respond with a success message, including the created restaurant document or any other relevant data
     res.status(201).json({
       id: newRestaurant._id,
       username: newRestaurant.username,
@@ -62,6 +76,13 @@ router.post('/register', async (req, res) => {
     res.status(500).json({ error: 'Failed to register restaurant', originalError: err.message });
   }
 });
+
+// Logout route
+router.post('/logout', (req, res) => {
+  // Clear the JWT token from the client-side (browser) by setting an empty token
+  res.clearCookie('token').json({ message: 'Logout successful' });
+});
+
 
 
 // Get all restaurants
