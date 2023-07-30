@@ -1,13 +1,15 @@
-import {useContext, useState} from "react";
-import {Navigate} from "react-router-dom";
-import {UserContext} from "../contexts/UserContext";
+import { useContext, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
-export default function LoginPage() {
+export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState("");
   const { setUserInfo } = useContext(UserContext);
+
+  const navigate = useNavigate(); // call the useNavigate hook here
 
   async function login(ev) {
     ev.preventDefault();
@@ -27,11 +29,16 @@ export default function LoginPage() {
     }
   }
 
+  const goToHome = () => {
+    navigate("/");
+  };
+
   if (redirect) {
     return <Navigate to={"/"} />;
   }
+
   return (
-    <form className="login" onSubmit={login}>
+    <form onSubmit={login}>
       <h1>Login</h1>
       <input
         type="text"
@@ -45,7 +52,22 @@ export default function LoginPage() {
         value={password}
         onChange={(ev) => setPassword(ev.target.value)}
       />
-      <button>Login</button>
+      <button type="submit">Login</button>
+      <button
+        type="button"
+        onClick={goToHome}
+        className={`
+            rounded-2xl border-1 border-black
+            bg-sunset_orange
+            px-6 py-3
+            font-semibold uppercase text-white
+            hover:rounded-md
+            hover:bg-another_sunset
+            transition-all durtation-300
+          `}
+      >
+        Back to Home
+      </button>
       {error && <div className="error">{error}</div>}
     </form>
   );

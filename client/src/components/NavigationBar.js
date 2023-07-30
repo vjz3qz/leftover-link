@@ -1,12 +1,14 @@
 import React from "react";
-import { Link } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
+import { Link as RouterLink } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function NavigationBar() {
   return (
     <div>
       <nav className="bg-yellow-50 dark:bg-gray-700 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <Link
+          <ScrollLink
             to="home"
             className="flex items-center"
             smooth={true}
@@ -17,15 +19,14 @@ function NavigationBar() {
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Leftover Link 🍣
             </span>
-          </Link>
+          </ScrollLink>
           <div className="flex md:order-2">
-            <button
+            <RouterLink
               to="/login"
-              type="button"
               className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 transition-all durtation-300"
             >
               Login
-            </button>
+            </RouterLink>
             <button
               data-collapse-toggle="navbar-sticky"
               type="button"
@@ -58,19 +59,19 @@ function NavigationBar() {
             <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-700 dark:border-gray-700">
               <li>
                 <div className="bg-yellow-50 dark:bg-gray-700">
-                  <Link
+                  <ScrollLink
                     to="home"
                     smooth={true}
                     duration={1000}
                     className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     Home
-                  </Link>
+                  </ScrollLink>
                 </div>
               </li>
               <li>
                 <div className="bg-yellow-50 dark:bg-gray-700">
-                  <Link
+                  <ScrollLink
                     to="mission"
                     smooth={true}
                     duration={1000}
@@ -78,12 +79,12 @@ function NavigationBar() {
                     className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     Mission
-                  </Link>
+                  </ScrollLink>
                 </div>
               </li>
               <li>
                 <div className="bg-yellow-50 dark:bg-gray-700">
-                  <Link
+                  <ScrollLink
                     to="about"
                     smooth={true}
                     duration={1000}
@@ -91,12 +92,12 @@ function NavigationBar() {
                     className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     About
-                  </Link>
+                  </ScrollLink>
                 </div>
               </li>
               <li>
                 <div className="bg-yellow-50 dark:bg-gray-700">
-                  <Link
+                  <ScrollLink
                     to="contact"
                     smooth={true}
                     duration={1000}
@@ -104,20 +105,17 @@ function NavigationBar() {
                     className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     Contact
-                  </Link>
+                  </ScrollLink>
                 </div>
               </li>
               <li>
                 <div className="bg-yellow-50 dark:bg-gray-700">
-                  <Link
-                    to="foodform"
-                    smooth={true}
-                    duration={1000}
-                    offset={-70}
-                    className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Food Form
-                  </Link>
+            <RouterLink
+              to="/food-tracker"
+              className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >
+              Food Tracker
+            </RouterLink>
                 </div>
               </li>
             </ul>
