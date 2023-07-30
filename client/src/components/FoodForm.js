@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from '../contexts/UserContext';
 
-const FoodForm = ({ restaurantUsername }) => {
+const FoodForm = () => {
+  const { restaurantInfo } = useContext(UserContext);
+  const restaurantUsername = restaurantInfo.username;
   const [name, setName] = useState("");
   const [unit, setUnit] = useState("");
   const [quantity, setQuantity] = useState("");

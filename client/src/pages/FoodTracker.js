@@ -1,13 +1,13 @@
 import React from "react";
 import FoodForm from "../components/FoodForm";
 
-const FoodTracker = ({ username }) => {
+const FoodTracker = () => {
 
   
 
   return (
     <div className="add-food-container">
-      <FoodForm restaurantUsername={username} />
+      <FoodForm />
     </div>
   );
 };

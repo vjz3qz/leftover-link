@@ -109,7 +109,7 @@ function NavigationBar() {
               </li>
               <li>
                 <div className="bg-yellow-50 dark:bg-gray-700">
-                <Link
+                  <Link
                     to="foodform"
                     smooth={true}
                     duration={1000}
