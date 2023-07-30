@@ -20,6 +20,7 @@ function NavigationBar() {
           </Link>
           <div className="flex md:order-2">
             <button
+              to="/login"
               type="button"
               className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 transition-all durtation-300"
             >
