@@ -116,14 +116,28 @@ router.get('/expiring-food', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const restaurant = await Restaurant.findById(req.params.id);
-    if (!restaurant) {
-      return res.status(404).json({ error: 'Restaurant not found' });
-    }
-    res.json(restaurant);
+    getRestaurant();
   } catch (err) {
     res.status(500).json({ error: 'Failed to retrieve restaurant by ID' });
   }
 });
+
+// Get a specific restaurant by username
+router.get('/:username', async (req, res) => {
+  try {
+    const restaurant = await Restaurant.findOne(req.params.username);
+    getRestaurant();
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to retrieve restaurant by username' });
+  }
+});
+
+const getRestaurant =  () => {
+  if (!restaurant) {
+    return res.status(404).json({ error: 'Restaurant not found' });
+  }
+  res.json(restaurant);
+};
 
 // Helper function to convert address to coordinates
 const convertAddressToCoords = async (address) => {
@@ -181,40 +195,68 @@ router.patch('/:id', async (req, res) => {
 router.patch('/add-food/:id', async (req, res) => {
   try {
     const restaurant = await Restaurant.findById(req.params.id);
-    if (!restaurant) {
-      return res.status(404).json({ error: 'Restaurant not found' });
-    }
-    const { name, unit, quantity, expirationDate } = req.body;
-    const food = new Food({ name, unit, quantity, expirationDate, restaurant: restaurant._id });
-    const newFood = await food.save();
-    restaurant.foods.push(newFood);
-    const updatedRestaurant = await restaurant.save();
-    res.json(updatedRestaurant);
+    await addFood(restaurant);
   } catch (err) {
     res.status(500).json({ error: 'Failed to add food to restaurant' });
   }
 });
 
+//Update a restaurant by username by adding a food
+router.patch('/add-food/:username', async (req, res) => {
+  try {
+    const restaurant = await Restaurant.findOne(req.params.username);
+    await addFood(restaurant);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to add food to restaurant' });
+  }
+});
+
+const addFood = async (restaurant) => {
+  if (!restaurant) {
+    return res.status(404).json({ error: 'Restaurant not found' });
+  }
+  const { name, unit, quantity, expirationDate } = req.body;
+  const food = new Food({ name, unit, quantity, expirationDate, restaurant: restaurant._id });
+  const newFood = await food.save();
+  restaurant.foods.push(newFood);
+  const updatedRestaurant = await restaurant.save();
+  res.json(updatedRestaurant);
+};
+
 //Update a restaurant by ID by deleting a food
 router.patch('/delete-food/:id', async (req, res) => {
   try {
     const restaurant = await Restaurant.findById(req.params.id);
-    if (!restaurant) {
-      return res.status(404).json({ error: 'Restaurant not found' });
-    }
-    const foodId = req.body.foodId;
-    const index = restaurant.foods.findIndex((food) => food.toString() === foodId);//find food in array that is in restaurant
-    if (index === -1) {//not found in array then return an error
-      return res.status(404).json({ error: 'Food not found in the restaurant' });
-    }
-    restaurant.foods.splice(index, 1);//remove it from the array
-    await Food.findByIdAndRemove(foodId);
-    const updatedRestaurant = await restaurant.save();//update the restaurant then
-    res.json(updatedRestaurant);
+    await deleteFood(restaurant);
   } catch (err) {
     res.status(500).json({ error: 'Failed to delete food from restaurant', originalError: err.message });
   }
 });
+
+//Update a restaurant by username by deleting a food
+router.patch('/delete-food/:username', async (req, res) => {
+  try {
+    const restaurant = await Restaurant.findOne(req.params.username);
+    await deleteFood(restaurant);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete food from restaurant', originalError: err.message });
+  }
+});
+
+const deleteFood = async (restaurant) => {
+  if (!restaurant) {
+    return res.status(404).json({ error: 'Restaurant not found' });
+  }
+  const foodId = req.body.foodId;
+  const index = restaurant.foods.findIndex((food) => food.toString() === foodId);//find food in array that is in restaurant
+  if (index === -1) {//not found in array then return an error
+    return res.status(404).json({ error: 'Food not found in the restaurant' });
+  }
+  restaurant.foods.splice(index, 1);//remove it from the array
+  await Food.findByIdAndRemove(foodId);
+  const updatedRestaurant = await restaurant.save();//update the restaurant then
+  res.json(updatedRestaurant);
+};
 
 // Delete a restaurant by ID
 router.delete('/:id', async (req, res) => {

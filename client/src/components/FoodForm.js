@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const FoodForm = ({ restaurantId }) => {
+const FoodForm = ({ restaurantUsername }) => {
   const [name, setName] = useState("");
   const [unit, setUnit] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -16,7 +16,7 @@ const FoodForm = ({ restaurantId }) => {
       };
 
       const response = await fetch(
-        `/api/restaurants/add-food/${restaurantId}`,
+        `/api/restaurants/add-food/${restaurantUsername}`,
         {
           method: "PATCH",
           headers: {
