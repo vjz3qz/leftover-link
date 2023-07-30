@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { UserContext } from './UserContext'; // Import the UserContext if not already imported
+import { UserContext } from '../contexts/UserContext'; // Import the UserContext if not already imported
 
 const Inventory = () => {
   const { restaurantInfo } = useContext(UserContext);
