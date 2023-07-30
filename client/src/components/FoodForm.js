@@ -2,8 +2,9 @@ import React, { useState, useContext } from "react";
 import { UserContext } from '../contexts/UserContext';
 
 const FoodForm = () => {
-  const { restaurantInfo } = useContext(UserContext);
-  const restaurantUsername = restaurantInfo.username;
+  //const { restaurantInfo } = useContext(UserContext);
+  //const restaurantUsername = restaurantInfo.username;
+  const restaurantUsername = "test";
   const [name, setName] = useState("");
   const [unit, setUnit] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -144,7 +145,6 @@ const FoodForm = () => {
           </button>
         </form>
       </div>
-      <hr className="w-1/2 h-1 mx-auto my-4 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700" />
     </section>
   );
 };
