@@ -2,8 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../contexts/UserContext'; // Import the UserContext if not already imported
 
 const Inventory = () => {
-  const { restaurantInfo } = useContext(UserContext);
-  const restaurantUsername = restaurantInfo.username;
+    //const { restaurantInfo } = useContext(UserContext);
+  //const restaurantUsername = restaurantInfo.username;
+  const restaurantUsername = "test";
   const [inventoryItems, setInventoryItems] = useState([]);
 
   useEffect(() => {

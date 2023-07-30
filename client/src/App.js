@@ -8,11 +8,11 @@ import NavigationBar from "./components/NavigationBar";
 import FoodTracker from "./pages/FoodTracker";
 
 function App() {
-  const [Login, setLogin] = useState(false);
+  const [Login, setLogin] = useState(true);
   const { restaurantInfo } = useContext(UserContext);
-  if (Object.keys(restaurantInfo).length > 0) { // if the user is logged in
+  if (restaurantInfo && Object.keys(restaurantInfo).length > 0) { // if the user is logged in
     setLogin(true);
-  }
+  }  
   return (
     <div className="App">
       <NavigationBar />
