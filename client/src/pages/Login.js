@@ -48,14 +48,15 @@ export default function Login() {
           Login
         </h1>
         <form className="space-y-4" onSubmit={login}>
-  <div className="flex flex-col items-center">
-    <label
-      htmlFor="username"
-      className="block text-sm font-medium text-gray-700 mb-2"
-      style={{ fontSize: "20px" }}
-    >
-      Username:
-    </label>
+          <div className="flex flex-col items-center space-y-4">
+            <div className="flex items-center space-x-4">
+              <label
+                htmlFor="username"
+                className="text-sm font-medium text-gray-700"
+                style={{ fontSize: "20px" }}
+              >
+                Username:
+              </label>
               <input
                 type="text"
                 id="username"
@@ -65,15 +66,15 @@ export default function Login() {
                 required
                 className="border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 p-2 my-3 dark:bg-gray-700 dark:text-white dark:border-gray-500 dark:focus:ring-orange-500 dark:focus:border-orange-500"
               />
-  </div>
-  <div className="flex flex-col items-center">
-    <label
-      htmlFor="password"
-      className="block text-sm font-medium text-gray-700 mb-2"
-      style={{ fontSize: "20px" }}
-    >
-      Password:
-    </label>
+            </div>
+            <div className="flex items-center space-x-4">
+              <label
+                htmlFor="password"
+                className="text-sm font-medium text-gray-700"
+                style={{ fontSize: "20px" }}
+              >
+                Password:
+              </label>
               <input
                 type="password"
                 id="password"
@@ -83,7 +84,8 @@ export default function Login() {
                 required
                 className="border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 p-2 my-3 dark:bg-gray-700 dark:text-white dark:border-gray-500 dark:focus:ring-orange-500 dark:focus:border-orange-500"
               />
-  </div>
+            </div>
+          </div>
           {error && (
             <div className="error text-center text-red-500 dark:text-red-400 mt-2">
               {error}
