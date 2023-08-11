@@ -58,69 +58,33 @@ function NavigationBar() {
             id="navbar-sticky"
           >
             <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-700 dark:border-gray-700">
-              <li>
-                <div className="bg-yellow-50 dark:bg-gray-700">
-                  <ScrollLink
-                    to="home"
-                    smooth={true}
-                    duration={1000}
-                    className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Home
-                  </ScrollLink>
-                </div>
-              </li>
-              <li>
-                <div className="bg-yellow-50 dark:bg-gray-700">
-                  <ScrollLink
-                    to="mission"
-                    smooth={true}
-                    duration={1000}
-                    offset={-70}
-                    className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Mission
-                  </ScrollLink>
-                </div>
-              </li>
-              <li>
-                <div className="bg-yellow-50 dark:bg-gray-700">
-                  <ScrollLink
-                    to="about"
-                    smooth={true}
-                    duration={1000}
-                    offset={-70}
-                    className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    About
-                  </ScrollLink>
-                </div>
-              </li>
-              <li>
-                <div className="bg-yellow-50 dark:bg-gray-700">
-                  <ScrollLink
-                    to="contact"
-                    smooth={true}
-                    duration={1000}
-                    offset={-70}
-                    className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Contact
-                  </ScrollLink>
-                </div>
-              </li>
-              <li>
-                <div className="bg-yellow-50 dark:bg-gray-700">
-                  {restaurantInfo && Object.keys(restaurantInfo).length > 0 && (
-                    <RouterLink
-                      to="/food-tracker"
-                      className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                    >
-                      Food Tracker
-                    </RouterLink>
-                  )}
-                </div>
-              </li>
+              {[
+                ["Home", "home"],
+                ["Mission", "mission"],
+                ["About", "about"],
+                ["Contact", "contact"],
+                ["Food Tracker", "/food-tracker"],
+              ].map(([text, address], index, arr) => {
+                return (
+                  (index !== arr.length - 1 ||
+                    (restaurantInfo &&
+                      Object.keys(restaurantInfo).length > 0)) && (
+                    <li key={index}>
+                      <button>
+                        <ScrollLink
+                          to={address}
+                          smooth={true}
+                          duration={1000}
+                          offset={-70}
+                          className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                        >
+                          {text}
+                        </ScrollLink>
+                      </button>
+                    </li>
+                  )
+                );
+              })}
             </ul>
           </div>
         </div>
