@@ -25,7 +25,6 @@ function App() {
 
 function AppContent() {
   const location = useLocation();
-  const { restaurantInfo } = useContext(UserContext);
 
   return (
     <div className="App">

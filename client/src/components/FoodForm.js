@@ -105,7 +105,14 @@ const FoodForm = () => {
               type="number"
               id="quantity"
               value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
+              onChange={(e) => {
+                if (e.target.value < 0) {
+                  setQuantity(0);
+                } else {
+                  setQuantity(e.target.value);
+                }
+              }}
+              min='0'
               required
               className="border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Enter Quantity..."
@@ -132,14 +139,14 @@ const FoodForm = () => {
             type="button"
             onClick={handleAddFood}
             className={`
-            rounded-2xl border-1 border-black
-            bg-sunset_orange
-            px-6 py-3
-            font-semibold uppercase text-white
-            hover:rounded-md
-            hover:bg-another_sunset
-            transition-all durtation-300
-          `}
+              rounded-2xl border-1 border-black 
+  bg-sunset_orange px-6 py-3 mx-2
+  font-semibold uppercase text-white
+  hover:rounded-md hover:bg-another_sunset
+  focus:ring-4 focus:outline-none focus:bg-another_sunset 
+  dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 
+  transition-all duration-300
+            `}
           >
             Add Food
           </button>
