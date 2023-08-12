@@ -12,25 +12,24 @@ const FoodTracker = () => {
   const goToHome = () => {
     navigate("/");
   };
-  const goToLogin = () => {
-    navigate("/login");
-  };
 
   return (
-    <div>
-      {/* {userInfo ? (
-        <div className="add-food-container flex flex-row">
-          <FoodForm />
-          <Inventory />
-        </div>
-      ) : (
-        <Navigate to={"/login"} />
-      )} */}
+    <section className="p-8 dark:bg-gray-800 flex items-center justify-center min-h-screen">
+
+<div className="max-w-3xl mx-auto">
+      {userInfo ? (
+      <div>
+        <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-center dark:text-white">
+        {"Hello, " + userInfo?.username + "!"}
+        </h1>
       <div className="add-food-container flex flex-row">
           <FoodForm />
           <Inventory />
         </div>
-
+      </div>
+      ) : (
+        <Navigate to={"/login"} />
+      )}
       <button
         type="button"
         onClick={goToHome}
@@ -47,6 +46,8 @@ const FoodTracker = () => {
         Back to Home
       </button>
     </div>
+    </section>
+
   );
 };
 

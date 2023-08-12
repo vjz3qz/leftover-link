@@ -148,13 +148,13 @@ router.get('/:id', async (req, res) => {
 router.get('/:username', async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne(req.params.username);
-    getRestaurant();
+    getRestaurant(restaurant);
   } catch (err) {
     res.status(500).json({ error: 'Failed to retrieve restaurant by username' });
   }
 });
 
-const getRestaurant =  () => {
+const getRestaurant =  (restaurant) => {
   if (!restaurant) {
     return res.status(404).json({ error: 'Restaurant not found' });
   }
@@ -216,33 +216,38 @@ router.patch('/:id', async (req, res) => {
 //Update a restaurant by ID by adding a food
 router.patch('/add-food/:id', async (req, res) => {
   try {
-    const restaurant = await Restaurant.findById(req.params.id);
-    await addFood(restaurant);
+    const restaurant = await Restaurant.findOne({ _id: req.params.id });
+    await addFood(restaurant, req, res);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to add food to restaurant' });
+    res.status(500).json({ originalError: err, error: 'Failed to add food to restaurant' });
   }
 });
 
 //Update a restaurant by username by adding a food
 router.patch('/add-food/:username', async (req, res) => {
   try {
-    const restaurant = await Restaurant.findOne(req.params.username);
-    await addFood(restaurant);
+    const restaurant = await Restaurant.findOne({ username: req.params.username });
+    await addFood(restaurant, req, res);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to add food to restaurant' });
+    res.status(500).json({ originalError: err, error: 'Failed to add food to restaurant!' });
   }
 });
 
-const addFood = async (restaurant) => {
+const addFood = async (restaurant, req, res) => {
   if (!restaurant) {
     return res.status(404).json({ error: 'Restaurant not found' });
   }
-  const { name, unit, quantity, expirationDate } = req.body;
-  const food = new Food({ name, unit, quantity, expirationDate, restaurant: restaurant._id });
-  const newFood = await food.save();
-  restaurant.foods.push(newFood);
-  const updatedRestaurant = await restaurant.save();
-  res.json(updatedRestaurant);
+  try {
+    const { name, unit, quantity, expirationDate } = req.body;
+    const food = new Food({ name, unit, quantity, expirationDate, restaurant: restaurant._id });
+    const newFood = await food.save();
+    restaurant.foods.push(newFood);
+    const updatedRestaurant = await restaurant.save();
+    res.json(updatedRestaurant);
+  } catch (error) {
+    console.error(error); // Log the actual error for debugging
+    res.status(500).json({ originalError: error, error: 'Failed to save the food and update the restaurant' });
+  }
 };
 
 //Update a restaurant by ID by deleting a food
@@ -294,20 +299,37 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-/// Get all foods from a specific restaurant
-router.get('/:username/get-all-food', async (req, res) => {
+// Get all foods from a specific restaurant
+router.get('by-username/:username/get-all-food', async (req, res) => {
   try {
     const restaurantUsername = req.params.username;
     const restaurant = await Restaurant.findOne({ username: restaurantUsername });
 
     if (!restaurant) {
-      return res.status(404).json({ message: 'Restaurant not found' });
+      return res.status(404).json({ error: 'Restaurant not found' });
     }
 
     const foods = await Food.find({ restaurant: restaurant._id });
     res.json(foods);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Get all foods from a specific restaurant
+router.get('/by-id/:id/get-all-food', async (req, res) => {
+  try {
+    const restaurantId = req.params.id;
+    const restaurant = await Restaurant.findOne({ _id: restaurantId });
+
+    if (!restaurant) {
+      return res.status(404).json({ error: 'Restaurant not found' });
+    }
+
+    const foods = await Food.find({ restaurant: restaurant._id });
+    res.json(foods);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 

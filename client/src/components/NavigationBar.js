@@ -73,18 +73,18 @@ function NavigationBar() {
           >
             <ul className="flex justify-center items-center flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent bg-yellow-50 dark:bg-gray-700 dark:border-gray-700">
               {[
-                ["Home", "home"],
-                ["Mission", "mission"],
-                ["About", "about"],
-                ["Contact", "contact"],
-                ["Food Tracker", "/food-tracker"],
-              ].map(([text, address], index, arr) => {
+                ["Home", "home", ScrollLink],
+                ["Mission", "mission", ScrollLink],
+                ["About", "about", ScrollLink],
+                ["Contact", "contact", ScrollLink],
+                ["Food Tracker", "/food-tracker", RouterLink],
+              ].map(([text, address, Link], index, arr) => {
                 return (
                   (index !== arr.length - 1 ||
                     (userInfo)) && (
                     <li key={index}>
                       <button>
-                        <ScrollLink
+                        <Link
                           to={address}
                           smooth={true}
                           duration={1000}
@@ -92,7 +92,7 @@ function NavigationBar() {
                           className="block py-2 pl-3 pr-4 bg-yellow-50 dark:bg-gray-700 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-another_sunset md:p-0 md:dark:hover:text-light_orange dark:text-white dark:hover:bg-gray-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                         >
                           {text}
-                        </ScrollLink>
+                        </Link>
                       </button>
                     </li>
                   )

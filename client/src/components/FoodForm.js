@@ -2,15 +2,17 @@ import React, { useState, useContext } from "react";
 import { UserContext } from '../contexts/UserContext';
 
 const FoodForm = () => {
-  //const { restaurantInfo } = useContext(UserContext);
-  //const restaurantUsername = restaurantInfo.username;
-  const restaurantUsername = "test";
+  const { userInfo } = useContext(UserContext);
+  const restaurantUsername = userInfo?.username;
+  const restaurantId = userInfo?.id;
   const [name, setName] = useState("");
   const [unit, setUnit] = useState("");
   const [quantity, setQuantity] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
+  const [error, setError] = useState("");
 
-  const handleAddFood = async () => {
+  async function handleAddFood(ev) {
+    ev.preventDefault();
     try {
       const newFood = {
         name,
@@ -20,7 +22,7 @@ const FoodForm = () => {
       };
 
       const response = await fetch(
-        `/api/restaurants/add-food/${restaurantUsername}`,
+        `/api/restaurants/add-food/${restaurantId}`,
         {
           method: "PATCH",
           headers: {
@@ -31,23 +33,27 @@ const FoodForm = () => {
       );
 
       if (response.ok) {
-        console.log("Food added successfully");
+        alert("Food added successfully!");
         setName("");
         setUnit("");
         setQuantity("");
         setExpirationDate("");
       } else {
         console.log("Failed to add food");
+        response.json().then((errorData) => {
+          setError(errorData.originalError || errorData.error || "Failed to add food");
+        });
       }
     } catch (error) {
       console.error("Error adding food:", error);
+      setError("An error occurred while trying to connect to the server.");
     }
   };
 
   return (
-    <section id="foodform" className="p-8">
+    <section id="foodform" className="p-8 dark:bg-gray-800 flex items-center justify-center min-h-screen">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-center">
+      <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-center dark:text-white">
           Food Form
         </h1>
         <p className="text-lg leading-relaxed mb-6">
@@ -56,7 +62,7 @@ const FoodForm = () => {
           reducing food waste and connecting with those in need. Thank you for
           your contribution!
         </p>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleAddFood}>
           <div>
             <label
               htmlFor="name"
@@ -135,9 +141,14 @@ const FoodForm = () => {
               className="border-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
+
+          {error && (
+            <div className="error text-center text-red-500 dark:text-red-400 mt-2">
+              {error}
+            </div>
+          )}
           <button
-            type="button"
-            onClick={handleAddFood}
+            type="submit"
             className={`
               rounded-2xl border-1 border-black 
   bg-sunset_orange px-6 py-3 mx-2

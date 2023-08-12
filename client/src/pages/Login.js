@@ -13,19 +13,27 @@ export default function Login() {
 
   async function login(ev) {
     ev.preventDefault();
-    const response = await fetch("/api/restaurants/login", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    });
-    if (response.ok) {
-      alert("Login successful!");
-      const userInfo = await response.json();
-      setUserInfo(userInfo);
-      setRedirect(true);
-    } else {
-      setError("wrong credentials");
+    try {
+      const response = await fetch("/api/restaurants/login", {
+        method: "POST",
+        body: JSON.stringify({ username, password }),
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+      if (response.ok) {
+        alert("Login successful!");
+        const userInfo = await response.json();
+        setUserInfo(userInfo);
+        setRedirect(true);
+      } else {
+        response.json().then((errorData) => {
+          setError(errorData.originalError || "wrong credentials");
+        });
+      }
+
+    } catch (error) {
+      console.error("Error during fetch:", error);
+      setError("An error occurred while trying to connect to the server.");
     }
   }
 
