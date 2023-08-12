@@ -52,7 +52,7 @@ export default function Login() {
             <div className="flex items-center space-x-4">
               <label
                 htmlFor="username"
-                className="text-sm font-medium text-gray-700"
+                className="text-sm font-medium text-gray-700 w-28"
                 style={{ fontSize: "20px" }}
               >
                 Username:
@@ -70,7 +70,7 @@ export default function Login() {
             <div className="flex items-center space-x-4">
               <label
                 htmlFor="password"
-                className="text-sm font-medium text-gray-700"
+                className="text-sm font-medium text-gray-700 w-28"
                 style={{ fontSize: "20px" }}
               >
                 Password:

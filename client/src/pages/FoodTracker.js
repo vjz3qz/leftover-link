@@ -7,7 +7,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 const FoodTracker = () => {
   const navigate = useNavigate(); // call the useNavigate hook here
-  const { restaurantInfo } = useContext(UserContext);
+  const { userInfo } = useContext(UserContext);
 
   const goToHome = () => {
     navigate("/");
@@ -18,7 +18,7 @@ const FoodTracker = () => {
 
   return (
     <div>
-      {/* {restaurantInfo && Object.keys(restaurantInfo).length > 0 ? (
+      {/* {userInfo ? (
         <div className="add-food-container flex flex-row">
           <FoodForm />
           <Inventory />

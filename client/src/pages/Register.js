@@ -70,7 +70,7 @@ export default function Register() {
                 <div className="flex items-center space-x-4">
                   <label
                     htmlFor={value}
-                    className="text-sm font-medium text-gray-700"
+                    className="text-sm font-medium text-gray-700 w-28"
                     style={{ fontSize: "20px" }}
                   >
                     {uppercase}:

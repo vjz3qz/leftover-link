@@ -71,7 +71,7 @@ function NavigationBar() {
           <div className={`${menuOpen ? 'block' : 'hidden'} items-center justify-between w-full md:flex md:w-auto md:order-1 bg-yellow-50 dark:bg-gray-700 mt-1 md:mt-0`}
             id="navbar-sticky"
           >
-            <ul className="flex justify-center items-center flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-700 dark:border-gray-700">
+            <ul className="flex justify-center items-center flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent bg-yellow-50 dark:bg-gray-700 dark:border-gray-700">
               {[
                 ["Home", "home"],
                 ["Mission", "mission"],
