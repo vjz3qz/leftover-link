@@ -10,13 +10,8 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors());
-const username = process.env.USERNAME;
-const password = process.env.PASSWORD;
-const host = process.env.HOST;
-const port = process.env.PORT;
-const databaseName = process.env.DBNAME;
 
-const url = `mongodb://${username}:${password}@${host}:${port}/${databaseName}`;
+const url = process.env.DB_URL;
 
 mongoose.connect(url, {
   useNewUrlParser: true,
