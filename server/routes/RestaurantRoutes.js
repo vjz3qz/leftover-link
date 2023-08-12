@@ -52,7 +52,8 @@ router.post('/register', async (req, res) => {
     }
 
     // Create a new restaurant document with the provided details
-    const coordinates = await convertAddressToCoords(address);
+    // const coordinates = await convertAddressToCoords(address);
+    const coordinates = [0.0, 0.0];
     const restaurant = new Restaurant({
       name,
       email,

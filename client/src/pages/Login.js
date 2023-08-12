@@ -20,10 +20,10 @@ export default function Login() {
       credentials: "include",
     });
     if (response.ok) {
-      response.json().then((userInfo) => {
-        setUserInfo(userInfo);
-        setRedirect(true);
-      });
+      alert("Login successful!");
+      const userInfo = await response.json();
+      setUserInfo(userInfo);
+      setRedirect(true);
     } else {
       setError("wrong credentials");
     }

@@ -4,7 +4,7 @@ import { Link as ScrollLink } from "react-scroll";
 import { Link as RouterLink } from "react-router-dom";
 
 function NavigationBar() {
-  const { restaurantInfo } = useContext(UserContext);
+  const { userInfo, setUserInfo } = useContext(UserContext);
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -29,7 +29,7 @@ function NavigationBar() {
             </span>
           </ScrollLink>
           <div className="flex md:order-2">
-            {!restaurantInfo ? (
+            {!userInfo ? (
               <RouterLink
                 to="/login"
                 className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 transition-all duration-300"
@@ -37,8 +37,10 @@ function NavigationBar() {
                 Login
               </RouterLink>
             ) : (
-              <button className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 transition-all duration-300">
-                {restaurantInfo.username}
+              <button 
+              onClick={() => setUserInfo(null)}
+              className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 transition-all duration-300">
+                {"Hello, " + userInfo?.username + "!"}
               </button>
             )}
             <button
@@ -79,8 +81,7 @@ function NavigationBar() {
               ].map(([text, address], index, arr) => {
                 return (
                   (index !== arr.length - 1 ||
-                    (restaurantInfo &&
-                      Object.keys(restaurantInfo).length > 0)) && (
+                    (userInfo)) && (
                     <li key={index}>
                       <button>
                         <ScrollLink
