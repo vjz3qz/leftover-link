@@ -7,7 +7,7 @@ const shelterRoutes = require('./routes/ShelterRoutes');
 const cors = require('cors');
 require('dotenv').config();
 
-
+console.log("hello world");
 const app = express();
 app.use(cors());
 
