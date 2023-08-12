@@ -1,0 +1,9 @@
+{
+    "scripts": {
+      "start": "node server/index.js"
+    },
+    "engines": {
+      "node": "14.x"
+    }
+  }
+  
