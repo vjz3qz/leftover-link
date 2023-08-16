@@ -1,12 +1,11 @@
 # TODO
 
 - [x] Test adding food to database after logging in as a restaurant: add food, food inventory
-- [ ] re enable geocoding/map api
-- [ ] move google api key functionality to backend
+- [ ] Restrict api key to only be used at our domain. creat seperate api key for backend
 - [ ] add subscription service for shelters
-- [ ] add to map functionality: info for each marker, food, etc.
-- [ ] add a way to add a shelter: subscribe button
     - [ ] extract buttons into components
+- [ ] add to map functionality: info for each marker, food, etc.
+- [ ] re enable geocoding/map api
 - [ ] deploy with AWS
 
 - [ ] fix landing styling, small page styling
