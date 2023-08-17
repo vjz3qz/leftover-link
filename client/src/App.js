@@ -36,7 +36,7 @@ function AppContent() {
             <div className=" dark:bg-gray-800">
               <Home />
               <Mission />
-              <hr className="w-1/2 h-1 mx-auto my-4 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700 dark:shadow-md" />
+              <hr className="w-1/2 h-1 mx-auto my-2 bg-gray-300 border-0 rounded md:my-10 dark:bg-gray-700 dark:shadow-md" />
               <About />
               <Contact />
             </div>
