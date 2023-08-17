@@ -24,7 +24,8 @@ return (
   <section id="about" className="p-8">
     <div className="max-w-3xl mx-auto text-center">
       <h1 className="text-3xl lg:text-4xl font-bold mb-4">About Us</h1>
-      <p className="text-md lg:text-lg leading-relaxed mb-8">
+      <div className="flex flex-col justify-center items-center">
+      <p className="text-md lg:text-lg w-5/6 lg:w-full leading-relaxed text-center mb-8">
         We are three UVA students who are passionate about sustainability and helping the community. We built this app to connect local restaurants with nearby homeless shelters to donate unused food before it expires. Our goal is to reduce food waste while helping those in need. 
       </p>
       <div className="flex flex-wrap justify-center">
@@ -44,6 +45,7 @@ return (
               linkedin="https://www.linkedin.com/in/niket-anand-236896229/"
               portfolio="lol"
            />
+      </div>
       </div>
     </div>
   </section>

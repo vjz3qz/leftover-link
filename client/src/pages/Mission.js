@@ -7,18 +7,15 @@ function Mission() {
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-center">We noticed a problem...</h1>
 
-        <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
+        <div className="flex flex-col justify-center items-center  space-y-4">
           
           {/* Text Section */}
-          <div className="flex-1">
-            <p className="text-md lg:text-lg leading-relaxed">
+          <p className="text-md lg:text-lg w-5/6 lg:w-full leading-relaxed text-center">
               Many restaurants and dining halls have copious amounts of food waste and we wanted to address this.
               Our main goal is to make a difference in the sustainability climate and find a way to connect these leftover vendors with homeless shelters.
             </p>
-          </div>
-          
           {/* Map Section */}
-          <div className="w-full lg:w-1/2 h-96">
+          <div className="w-5/6 lg:w-full h-96">
             <Map />
           </div>
 
