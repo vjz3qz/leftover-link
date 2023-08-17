@@ -8,9 +8,9 @@
 - [ ] re enable geocoding/map api
 - [ ] deploy with AWS
 
-- [ ] fix landing styling, small page styling
-- [ ] add scroll down button
-- [ ] add night mode for landing page
+- [ ] small/normal page styling for login, register, food tracking, and subscription
+- [ ] add scroll down button to landing page
+- [x] add night mode for landing page
 - [ ] combine food form and inventory to make a comprehensive food tracker
     - [ ] add a way to add food with a plus button and the next row appears, with a minus button to remove
     - [ ] like appending a row to a table
