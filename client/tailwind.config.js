@@ -9,7 +9,7 @@ module.exports = {
         sunset_orange: "#FF4257",
         another_sunset: "#FF4600",
         light_orange: "#FDC471",
-        'custom-yellow': '#fedeaf',
+        custom_yellow: '#fedeaf',
       },
       keyframes: {
         fadeIn: {

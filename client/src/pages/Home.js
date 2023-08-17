@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <section
       id="home"
-      className="bg-yellow-300 bg-center bg-cover w-screen h-screen relative"
+      className="bg-custom_yellow bg-center bg-cover w-screen h-screen relative"
     >
       <div className="w-full h-full flex flex-col justify-center items-center">
         <h1

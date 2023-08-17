@@ -14,7 +14,7 @@ function Mission() {
           We noticed a problem.
         </h1>
 
-        <div className="flex flex-col justify-center items-center space-y-4">
+        <div className="flex flex-col justify-center items-center space-y-4 lg:space-y-6">
           
           {/* Text Section */}
           <p 
@@ -25,7 +25,7 @@ function Mission() {
           </p>
           
           {/* Map Section */}
-          <div className="w-5/6 lg:w-full h-96">
+          <div className="w-5/6 lg:w-full h-96 lg:h-[32rem]">
             <Map />
           </div>
 
