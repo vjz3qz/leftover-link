@@ -14,11 +14,12 @@ module.exports = {
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
+          '50%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
       },
       animation: {
-        fadeIn: 'fadeIn 2s ease-out forwards',
+        fadeIn: 'fadeIn 4s ease-out forwards',
       },
     },
   },
