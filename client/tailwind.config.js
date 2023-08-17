@@ -10,7 +10,16 @@ module.exports = {
         another_sunset: "#FF4600",
         light_orange: "#FDC471",
         'custom-yellow': '#fedeaf',
-      }
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
+      animation: {
+        fadeIn: 'fadeIn 2s ease-out forwards',
+      },
     },
   },
   plugins: [],
