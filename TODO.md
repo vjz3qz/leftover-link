@@ -9,6 +9,7 @@
 - [ ] deploy with AWS
 
 - [ ] fix landing styling, small page styling
+- [ ] add scroll down button
 - [ ] add night mode for landing page
 - [ ] combine food form and inventory to make a comprehensive food tracker
     - [ ] add a way to add food with a plus button and the next row appears, with a minus button to remove
