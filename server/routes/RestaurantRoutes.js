@@ -5,7 +5,7 @@ const axios = require('axios');
 const Food = require('../models/Food');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const { convertAddressToCoords } = require('../utils/LocationService');
+const { convertAddressToCoords } = require('../utils/CoordinatesConverter');
 
 // TODO: update all error messages and returns
 // TODO: test all requests

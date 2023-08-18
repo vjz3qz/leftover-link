@@ -5,7 +5,8 @@
 - [ ] Restrict api key to only be used at our domain. creat seperate api key for backend
 - [ ] add subscription service for shelters
     - [ ] use twilio to send email to shelters
-    - [ ] add to api route for shelters
+    - [ ] abstract controllers from routes: shelter and restaurants
+    - [ ] import controllers into routes and notification service
 - [ ] add to map functionality: info for each marker, food, etc.
 - [ ] clean all routes for continuity. check error messages, and if they are consistent
 - [ ] re enable geocoding/map api and update shelter/restaurant routes to use it

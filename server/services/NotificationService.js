@@ -13,8 +13,8 @@ async function sendEmailsToShelters(restaurantsWithFood) {
     //for loop to go through every shelter and send them the message below!
 
     const message = {
-      to: process.env.TO_LIST, // Change to your recipient
-      from: process.env.SENDER_EMAIL, // Change to your verified sender
+      to: process.env.TO_LIST,
+      from: process.env.SENDER_EMAIL,
       subject: "Near Expired Food Alert!",
       text: "and easy to do anywhere, even with Node.js",
       html: `<p>Dear ${shelter.name},</p>

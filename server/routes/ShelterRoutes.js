@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Shelter = require('../models/Shelter');
-const {convertAddressToCoords} = require('../utils/LocationService');
+const {convertAddressToCoords} = require('../utils/CoordinatesConverter');
 
 // Get all shelters
 router.get('/', async (req, res) => {
