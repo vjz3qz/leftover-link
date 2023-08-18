@@ -1,12 +1,12 @@
-import { Router } from 'express';
-const router = Router();
-import Shelter, { find, findById } from '../models/Shelter';
+const express = require('express');
+const router = express.Router();
+const Shelter = require('../models/Shelter');
 import convertAddressToCoords from '../utils/LocationService';
 
 // Get all shelters
 router.get('/', async (req, res) => {
   try {
-    const shelters = await find();
+    const shelters = await Shelter.find();
     res.json(shelters);
   } catch (err) {
     res.json({ error: 'Failed to get all shelter', originalError: err.message });
@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 // Get a singular shelter
 router.get('/:id', async (req, res) => {
   try {
-    const shelter = await findById(req.params.id);
+    const shelter = await Shelter.findById(req.params.id);
     if (shelter == null) {
       return res.json({ message: 'Cannot find Shelter' });
     }
@@ -44,17 +44,17 @@ router.post('/subscribe', async (req, res) => {
 // Update a shelter
 router.patch('/:id', async (req, res) => {
   try {
-    const shelter = await findById(req.params.id);
-    if (!shelter) {
-      return res.status(404).json({ error: 'Cannot find Shelter' });
+    const shelter = await Shelter.findById(req.params.id);
+    if (shelter == null) {
+      return res.json({ message: 'Cannot find Shelter' });
     }
-    if (req.body.name) {
+    if (req.body.name != null) {
       shelter.name = req.body.name;
     }
-    if (req.body.address) {
-      shelter.address = req.body.address;
+    if (req.body.location != null) {
+      shelter.location = req.body.location;
     }
-    if (req.body.email) {
+    if (req.body.email != null) {
       shelter.email = req.body.email;
     }
     const coordinates = await convertAddressToCoords(req.body.address);
@@ -69,13 +69,14 @@ router.patch('/:id', async (req, res) => {
 // Delete a shelter
 router.delete('/:id', async (req, res) => {
   try {
-    const shelter = await findById(req.params.id);
+    const shelter = await Shelter.findById(req.params.id);
     if (shelter == null) {
       return res.json({ message: 'Cannot find Shelter' });
     }
     await shelter.remove();
     res.json({ message: 'Deleted Shelter' });
   } catch (err) {
-    res.json({ error: 'Failed to delete a shelter', originalError: err.message });
-  }
+    res.json({ error: 'Failed to delete a shelter', originalError: err.message });  }
 });
+
+module.exports = router;
