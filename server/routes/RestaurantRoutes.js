@@ -1,11 +1,10 @@
-import { Router } from 'express';
+const { Router } = require('express');
 const router = Router();
-import Restaurant, { findOne, find, aggregate, findById } from '../models/Restaurant';
-import Food, { findByIdAndRemove, find as _find } from '../models/Food';
-import { sign } from 'jsonwebtoken';
-import { compareSync, hashSync } from 'bcryptjs';
-import convertAddressToCoords from '../utils/LocationService';
-
+const Restaurant = require('../models/Restaurant');
+const Food = require('../models/Food');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const { convertAddressToCoords } = require('../utils/LocationService');
 
 // TODO: update all error messages and returns
 // TODO: test all requests
@@ -317,4 +316,3 @@ router.get('/by-id/:id/get-all-food', async (req, res) => {
   }
 });
 
-export default router;
