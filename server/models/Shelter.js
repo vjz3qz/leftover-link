@@ -2,28 +2,23 @@
 const mongoose = require('mongoose');
 
 const shelterSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    }, 
-    location: {
-        type: String, 
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    username: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
+    
+  name: {
     type: String,
     required: true
-    },
-    //Add phone number
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  address: {  
+    type: String,
+    required: true
+  },
+  coordinates: {
+    type: [Number],
+    required: true
+  }
 });
 
 const Shelter = mongoose.model('Shelter', shelterSchema);
