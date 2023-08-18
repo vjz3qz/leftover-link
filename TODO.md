@@ -8,7 +8,7 @@
 - [ ] add to map functionality: info for each marker, food, etc.
 - [ ] use logout route in log out button in navbar
 - [ ] clean all routes for continuity. check error messages, and if they are consistent
-- [ ] re enable geocoding/map api
+- [ ] re enable geocoding/map api and update shelter/restaurant routes to use it
 - [ ] deploy with AWS
 
 - [ ] small/normal page styling for login, register, food tracking, and subscription
