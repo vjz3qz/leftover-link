@@ -28,16 +28,14 @@ router.get('/:id', async (req, res) => {
 
 // Create a new shelter
 router.post('/', async (req, res) => {
-  const shelter = new Shelter({
-    name: req.body.name,
-    address: req.body.address,
-    email: req.body.email
-  });
+  const { name, address, email } = req.body;
   try {
+    const coordinates = await convertAddressToCoords(address);
+    const shelter = new Shelter({ name, email, address, coordinates });
     const newShelter = await shelter.save();
-    res.json(newShelter);
+    res.status(201).json(newShelter);
   } catch (err) {
-    res.json({ message: err.message });
+    res.status(400).json({ error: 'Failed to create a new shelter', originalError: err.message });
   }
 });
 
@@ -45,22 +43,24 @@ router.post('/', async (req, res) => {
 router.patch('/:id', async (req, res) => {
   try {
     const shelter = await findById(req.params.id);
-    if (shelter == null) {
-      return res.json({ message: 'Cannot find Shelter' });
+    if (!shelter) {
+      return res.status(404).json({ error: 'Cannot find Shelter' });
     }
-    if (req.body.name != null) {
+    if (req.body.name) {
       shelter.name = req.body.name;
     }
-    if (req.body.address != null) {
+    if (req.body.address) {
       shelter.address = req.body.address;
     }
-    if (req.body.email != null) {
+    if (req.body.email) {
       shelter.email = req.body.email;
     }
+    const coordinates = await convertAddressToCoords(req.body.address);
+    shelter.coordinates = coordinates;
     const updatedShelter = await shelter.save();
-    res.json(updatedShelter);
+    res.status(200).json(updatedShelter);
   } catch (err) {
-    res.json({ message: err.message });
+    res.status(500).json({ error: 'Failed to update a shelter', originalError: err.message });
   }
 });
 
@@ -74,9 +74,8 @@ router.delete('/:id', async (req, res) => {
     await shelter.remove();
     res.json({ message: 'Deleted Shelter' });
   } catch (err) {
-    res.json({ message: err.message });
+    res.json({ error: 'Failed to delete a shelter', originalError: err.message });
   }
 });
 
 export default router;
-
