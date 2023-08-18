@@ -24,7 +24,8 @@ const Map = () => {
         const restaurantMarkers = expiredRestaurants.map((restaurant) => ({
           lat: restaurant.coordinates[0],
           lng: restaurant.coordinates[1],
-          title: restaurant.name,
+          title: restaurant.name + '\n' + restaurant.address + '\n' + restaurant.email,
+
         }));
         setMarkers(restaurantMarkers);
         setLoading(false);
