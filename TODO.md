@@ -28,3 +28,6 @@ Future Features:
 - [ ] small/normal page styling and day/night modes for login, register, food tracking, and subscription
 - [ ] add scroll down button to landing page
 - [ ] clean code, extract components, etc.
+
+
+sell this after done to  a shelters
