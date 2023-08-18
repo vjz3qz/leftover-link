@@ -29,7 +29,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   const shelter = new Shelter({
     name: req.body.name,
-    location: req.body.location,
+    address: req.body.address,
     email: req.body.email
   });
   try {
@@ -50,8 +50,8 @@ router.patch('/:id', async (req, res) => {
     if (req.body.name != null) {
       shelter.name = req.body.name;
     }
-    if (req.body.location != null) {
-      shelter.location = req.body.location;
+    if (req.body.address != null) {
+      shelter.address = req.body.address;
     }
     if (req.body.email != null) {
       shelter.email = req.body.email;

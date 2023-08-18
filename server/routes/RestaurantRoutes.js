@@ -64,8 +64,8 @@ router.post('/register', async (req, res) => {
     });
     const newRestaurant = await restaurant.save();
 
-    // At this point, the restaurant document is created and saved in the database.
-    // You can also add any additional logic or validation you require for the user registration process.
+    // the restaurant document is created and saved in the database.
+    // add any additional logic or validation you require for the user registration process.
 
     // Respond with a success message, including the created restaurant document or any other relevant data
     res.status(201).json({
