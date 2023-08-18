@@ -4,6 +4,8 @@ const Restaurant = require('./models/Restaurant');
 const restaurantRoutes = require('./routes/RestaurantRoutes');
 const foodRoutes = require('./routes/FoodRoutes');
 const shelterRoutes = require('./routes/ShelterRoutes');
+require('./services/NotificationService');
+
 const cors = require('cors');
 require('dotenv').config();
 
