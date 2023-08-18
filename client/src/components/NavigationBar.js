@@ -16,18 +16,18 @@ function NavigationBar() {
     <div>
       <nav className="bg-yellow-50 dark:bg-gray-700 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          <button>
           <ScrollLink
             to="home"
             className="flex items-center"
             smooth={true}
             duration={1000}
           >
-            {/* <img src={logo} alt="Logo"  className="h-8" /> */}
-
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Leftover Link 🍣
             </span>
           </ScrollLink>
+          </button>
           <div className="flex md:order-2">
               
             {!userInfo ? (
