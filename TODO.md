@@ -2,13 +2,17 @@
 
 - [x] Test adding food to database after logging in as a restaurant: add food, food inventory
 - [x] use logout route in log out button in navbar
-- [ ] Restrict api key to only be used at our domain. creat seperate api key for backend
-- [ ] add subscription service for shelters
-    - [ ] use twilio to send email to shelters
-    - [ ] abstract controllers from routes: shelter and restaurants
-    - [ ] import controllers into routes and notification service
-- [ ] add to map functionality: info for each marker, food, etc.
+- [ ] Restrict api key to only be used at our domain. creat seperate api key for backend   
 - [ ] clean all routes for continuity. check error messages, and if they are consistent
+    - [ ] abstract controllers from routes: 
+        - [x] shelter
+        - [ ] restaurants
+        - [ ] food
+- [ ] add subscription service for shelters
+    - [x] use twilio to send email to shelters
+    - [x] import controllers into routes and notification service
+    - [ ] test if working
+- [ ] add to map functionality: info for each marker, food, etc.
 - [ ] re enable geocoding/map api and update shelter/restaurant routes to use it
 - [ ] deploy with AWS
 

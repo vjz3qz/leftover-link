@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Restaurant = require('../models/Restaurant');
+const RestaurantController = require('../controllers/RestaurantController');
 const axios = require('axios');
 const Food = require('../models/Food');
 const jwt = require('jsonwebtoken');
@@ -97,35 +98,7 @@ router.get('/', async (req, res) => {
 // Get restaurants with expiring food within 3 days
 router.get('/expiring-food', async (req, res) => {
   try {
-    const restaurants = await Restaurant.aggregate([
-      {
-        $lookup: {
-          from: 'foods',
-          localField: 'foods',
-          foreignField: '_id',
-          as: 'foodObjects'
-        }
-      },
-      {
-        $unwind: '$foodObjects'
-      },
-      {
-        $match: {
-          'foodObjects.expirationDate': {
-            $lte: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)
-          }
-        }
-      },
-      {
-        $group: {
-          _id: '$_id',
-          name: { $first: '$name' },
-          location: { $first: '$location' },
-          email: { $first: '$email' },
-          foods: { $push: '$foodObjects' }
-        }
-      }
-    ]);
+    const restaurants = await RestaurantController.getRestaurantsWithExpiringFood();
     res.json(restaurants);
   } catch (err) {
     res.status(500).json({ error: 'Failed to retrieve restaurants with expiring food' });
