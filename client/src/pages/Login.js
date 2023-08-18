@@ -104,12 +104,12 @@ export default function Login() {
               type="submit"
               className={`
               rounded-2xl border-1 border-black 
-  bg-sunset_orange px-6 py-3 mx-2
-  font-semibold uppercase text-white
-  hover:rounded-md hover:bg-another_sunset
-  focus:ring-4 focus:outline-none focus:bg-another_sunset 
-  dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 
-  transition-all duration-300
+              bg-sunset_orange px-6 py-3 mx-2
+              font-semibold uppercase text-white
+              hover:rounded-md hover:bg-another_sunset
+              focus:ring-4 focus:outline-none focus:bg-another_sunset 
+              dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 
+              transition-all duration-300
             `}
             >
               Login
@@ -142,7 +142,7 @@ export default function Login() {
   transition-all duration-300
             `}
             >
-              Back to Home
+              Home
             </button>
           </div>
         </form>

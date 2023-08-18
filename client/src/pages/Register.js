@@ -123,7 +123,7 @@ export default function Register() {
               transition-all duration-300
             `}
             >
-              Back to Home
+              Home
             </button>
           </div>
         </form>
