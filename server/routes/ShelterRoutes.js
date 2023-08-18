@@ -1,11 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const Shelter = require('../models/Shelter');
+import { Router } from 'express';
+const router = Router();
+import Shelter, { find, findById } from '../models/Shelter';
+import convertAddressToCoords from '../utils/LocationService';
 
 // Get all shelters
 router.get('/', async (req, res) => {
   try {
-    const shelters = await Shelter.find();
+    const shelters = await find();
     res.json(shelters);
   } catch (err) {
     res.json({ message: err.message });
@@ -15,7 +16,7 @@ router.get('/', async (req, res) => {
 // Get a singular shelter
 router.get('/:id', async (req, res) => {
   try {
-    const shelter = await Shelter.findById(req.params.id);
+    const shelter = await findById(req.params.id);
     if (shelter == null) {
       return res.json({ message: 'Cannot find Shelter' });
     }
@@ -43,7 +44,7 @@ router.post('/', async (req, res) => {
 // Update a shelter
 router.patch('/:id', async (req, res) => {
   try {
-    const shelter = await Shelter.findById(req.params.id);
+    const shelter = await findById(req.params.id);
     if (shelter == null) {
       return res.json({ message: 'Cannot find Shelter' });
     }
@@ -66,7 +67,7 @@ router.patch('/:id', async (req, res) => {
 // Delete a shelter
 router.delete('/:id', async (req, res) => {
   try {
-    const shelter = await Shelter.findById(req.params.id);
+    const shelter = await findById(req.params.id);
     if (shelter == null) {
       return res.json({ message: 'Cannot find Shelter' });
     }
@@ -77,5 +78,5 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
 

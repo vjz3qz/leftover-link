@@ -1,12 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const Restaurant = require('../models/Restaurant');
-const axios = require('axios');
-const Food = require('../models/Food');
-require('dotenv').config();
-const apiKey = process.env.REACT_APP_API_KEY;
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+import { Router } from 'express';
+const router = Router();
+import Restaurant, { findOne, find, aggregate, findById } from '../models/Restaurant';
+import Food, { findByIdAndRemove, find as _find } from '../models/Food';
+import { sign } from 'jsonwebtoken';
+import { compareSync, hashSync } from 'bcryptjs';
+import convertAddressToCoords from '../utils/LocationService';
 
 
 // TODO: update all error messages and returns
@@ -18,16 +16,16 @@ const secret = '1234567890asdfghjkl'; // Replace 'your_secret_key_here' with a s
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
   try {
-    const restaurant = await Restaurant.findOne({ username });
+    const restaurant = await findOne({ username });
 
     if (!restaurant) {
       return res.status(404).json({ error: 'Restaurant not found' });
     }
 
-    const isPasswordValid = bcrypt.compareSync(password, restaurant.password);
+    const isPasswordValid = compareSync(password, restaurant.password);
 
     if (isPasswordValid) {
-      const token = jwt.sign({ id: restaurant._id }, secret, { expiresIn: '1h' });
+      const token = sign({ id: restaurant._id }, secret, { expiresIn: '1h' });
       res.cookie('token', token, { httpOnly: true, maxAge: 3600000 }).json({
         id: restaurant._id,
         username: restaurant.username,
@@ -46,7 +44,7 @@ router.post('/register', async (req, res) => {
   const { username, password, name, address, email } = req.body;
   try {
     // Check if the username already exists in the database
-    const existingRestaurant = await Restaurant.findOne({ username });
+    const existingRestaurant = await findOne({ username });
     if (existingRestaurant) {
       return res.status(409).json({ error: 'Username already taken' });
     }
@@ -60,7 +58,7 @@ router.post('/register', async (req, res) => {
       address,
       coordinates,
       username,
-      password: bcrypt.hashSync(password, 10)
+      password: hashSync(password, 10)
     });
     const newRestaurant = await restaurant.save();
 
@@ -89,7 +87,7 @@ router.post('/logout', (req, res) => {
 // Get all restaurants
 router.get('/', async (req, res) => {
   try {
-    const restaurants = await Restaurant.find({});
+    const restaurants = await find({});
     res.json(restaurants);
   } catch (err) {
     res.status(500).json({ error: 'Failed to retrieve restaurants' });
@@ -99,7 +97,7 @@ router.get('/', async (req, res) => {
 // Get restaurants with expiring food within 3 days
 router.get('/expiring-food', async (req, res) => {
   try {
-    const restaurants = await Restaurant.aggregate([
+    const restaurants = await aggregate([
       {
         $lookup: {
           from: 'foods',
@@ -137,7 +135,7 @@ router.get('/expiring-food', async (req, res) => {
 // Get a specific restaurant by ID
 router.get('/:id', async (req, res) => {
   try {
-    const restaurant = await Restaurant.findById(req.params.id);
+    const restaurant = await findById(req.params.id);
     getRestaurant();
   } catch (err) {
     res.status(500).json({ error: 'Failed to retrieve restaurant by ID' });
@@ -147,7 +145,7 @@ router.get('/:id', async (req, res) => {
 // Get a specific restaurant by username
 router.get('/:username', async (req, res) => {
   try {
-    const restaurant = await Restaurant.findOne(req.params.username);
+    const restaurant = await findOne(req.params.username);
     getRestaurant(restaurant);
   } catch (err) {
     res.status(500).json({ error: 'Failed to retrieve restaurant by username' });
@@ -159,22 +157,6 @@ const getRestaurant =  (restaurant) => {
     return res.status(404).json({ error: 'Restaurant not found' });
   }
   res.json(restaurant);
-};
-
-// Helper function to convert address to coordinates
-const convertAddressToCoords = async (address) => {
-  try {
-    const geocodingEndpoint = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
-    const response = await axios.get(geocodingEndpoint);
-    if (response.data.status === 'OK' && response.data.results.length > 0) {
-      const { lat, lng } = response.data.results[0].geometry.location;
-      return [lat, lng];
-    } else {
-      throw new Error('Failed to convert address to coordinates. Status: ${response.data.status}');
-    }
-  } catch (err) {
-    throw new Error('Failed to convert address to coordinates');
-  }
 };
 
 // Create a new restaurant with coordinates
@@ -193,7 +175,7 @@ router.post('/', async (req, res) => {
 // Update a restaurant by ID
 router.patch('/:id', async (req, res) => {
   try {
-    const restaurant = await Restaurant.findById(req.params.id);
+    const restaurant = await findById(req.params.id);
     if (!restaurant) {
       return res.status(404).json({ error: 'Restaurant not found' });
     }
@@ -216,7 +198,7 @@ router.patch('/:id', async (req, res) => {
 //Update a restaurant by ID by adding a food
 router.patch('/add-food/:id', async (req, res) => {
   try {
-    const restaurant = await Restaurant.findOne({ _id: req.params.id });
+    const restaurant = await findOne({ _id: req.params.id });
     await addFood(restaurant, req, res);
   } catch (err) {
     res.status(500).json({ originalError: err, error: 'Failed to add food to restaurant' });
@@ -226,7 +208,7 @@ router.patch('/add-food/:id', async (req, res) => {
 //Update a restaurant by username by adding a food
 router.patch('/add-food/:username', async (req, res) => {
   try {
-    const restaurant = await Restaurant.findOne({ username: req.params.username });
+    const restaurant = await findOne({ username: req.params.username });
     await addFood(restaurant, req, res);
   } catch (err) {
     res.status(500).json({ originalError: err, error: 'Failed to add food to restaurant!' });
@@ -253,7 +235,7 @@ const addFood = async (restaurant, req, res) => {
 //Update a restaurant by ID by deleting a food
 router.patch('/delete-food/:id', async (req, res) => {
   try {
-    const restaurant = await Restaurant.findById(req.params.id);
+    const restaurant = await findById(req.params.id);
     await deleteFood(restaurant);
   } catch (err) {
     res.status(500).json({ error: 'Failed to delete food from restaurant', originalError: err.message });
@@ -263,7 +245,7 @@ router.patch('/delete-food/:id', async (req, res) => {
 //Update a restaurant by username by deleting a food
 router.patch('/delete-food/:username', async (req, res) => {
   try {
-    const restaurant = await Restaurant.findOne(req.params.username);
+    const restaurant = await findOne(req.params.username);
     await deleteFood(restaurant);
   } catch (err) {
     res.status(500).json({ error: 'Failed to delete food from restaurant', originalError: err.message });
@@ -280,7 +262,7 @@ const deleteFood = async (restaurant) => {
     return res.status(404).json({ error: 'Food not found in the restaurant' });
   }
   restaurant.foods.splice(index, 1);//remove it from the array
-  await Food.findByIdAndRemove(foodId);
+  await findByIdAndRemove(foodId);
   const updatedRestaurant = await restaurant.save();//update the restaurant then
   res.json(updatedRestaurant);
 };
@@ -288,7 +270,7 @@ const deleteFood = async (restaurant) => {
 // Delete a restaurant by ID
 router.delete('/:id', async (req, res) => {
   try {
-    const restaurant = await Restaurant.findById(req.params.id);
+    const restaurant = await findById(req.params.id);
     if (!restaurant) {
       return res.status(404).json({ error: 'Restaurant not found' });
     }
@@ -303,13 +285,13 @@ router.delete('/:id', async (req, res) => {
 router.get('by-username/:username/get-all-food', async (req, res) => {
   try {
     const restaurantUsername = req.params.username;
-    const restaurant = await Restaurant.findOne({ username: restaurantUsername });
+    const restaurant = await findOne({ username: restaurantUsername });
 
     if (!restaurant) {
       return res.status(404).json({ error: 'Restaurant not found' });
     }
 
-    const foods = await Food.find({ restaurant: restaurant._id });
+    const foods = await _find({ restaurant: restaurant._id });
     res.json(foods);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -320,17 +302,17 @@ router.get('by-username/:username/get-all-food', async (req, res) => {
 router.get('/by-id/:id/get-all-food', async (req, res) => {
   try {
     const restaurantId = req.params.id;
-    const restaurant = await Restaurant.findOne({ _id: restaurantId });
+    const restaurant = await findOne({ _id: restaurantId });
 
     if (!restaurant) {
       return res.status(404).json({ error: 'Restaurant not found' });
     }
 
-    const foods = await Food.find({ restaurant: restaurant._id });
+    const foods = await _find({ restaurant: restaurant._id });
     res.json(foods);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-module.exports = router;
+export default router;
