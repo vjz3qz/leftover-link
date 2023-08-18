@@ -50,7 +50,10 @@ export default function Login() {
   }
 
   return (
-    <section id="login" className="p-8 dark:bg-gray-800 flex items-center justify-center min-h-screen">
+    <section
+      id="login"
+      className="p-8 dark:bg-gray-800 flex items-center justify-center min-h-screen"
+    >
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-center dark:text-white">
           Login

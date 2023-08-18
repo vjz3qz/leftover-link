@@ -29,25 +29,41 @@ function NavigationBar() {
             </span>
           </ScrollLink>
           <div className="flex md:order-2">
+              
             {!userInfo ? (
-              <RouterLink
-                to="/login"
-                className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 transition-all duration-300"
-              >
-                Login
-              </RouterLink>
-            ) : (
+              <>
+
+        <RouterLink
+            to="/subscribe"
+            className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center md:mr-2 transition-all duration-300"
+        >
+            Subscribe
+        </RouterLink>
+
+        <RouterLink
+            to="/login"
+            className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center mr-1 md:mr-2 transition-all duration-300"
+        >
+            Login
+        </RouterLink>
+              </>
+            ) : (<>
               <button 
-              onClick={() => setUserInfo(null)}
-              className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 transition-all duration-300">
+              className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center md:mr-2 transition-all duration-300">
                 {"Hello, " + userInfo?.username + "!"}
               </button>
+              <button 
+              onClick={() => setUserInfo(null)}
+              className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center mr-1 md:mr-2 transition-all duration-300">
+                Logout
+              </button>
+            </>
             )}
             <button
               onClick={toggleMenu}
               data-collapse-toggle="navbar-sticky"
               type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden transition-all duration-300 hover:bg-another_sunset focus:ring-4 focus:ring-gray-200 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:ring-gray-600"
               aria-controls="navbar-sticky"
               aria-expanded="false"
             >
