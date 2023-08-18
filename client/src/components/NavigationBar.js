@@ -53,7 +53,16 @@ function NavigationBar() {
                 {"Hello, " + userInfo?.username + "!"}
               </button>
               <button 
-              onClick={() => setUserInfo(null)}
+              onClick={() => {
+                setUserInfo(null);
+                try {
+                  const response = fetch("/api/restaurants/logout", {
+                    method: "POST",
+                  });
+                } catch (err) {
+                  console.log(err);
+                }
+              }}
               className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center mr-1 md:mr-2 transition-all duration-300">
                 Logout
               </button>

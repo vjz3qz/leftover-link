@@ -79,7 +79,7 @@ router.post('/register', async (req, res) => {
 // Logout route
 router.post('/logout', (req, res) => {
   // Clear the JWT token from the client-side (browser) by setting an empty token
-  res.clearCookie('token').json({ message: 'Logout successful' });
+  res.clearCookie('token').status(200).json({ message: 'Logout successful' });
 });
 
 
