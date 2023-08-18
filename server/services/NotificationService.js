@@ -1,22 +1,19 @@
 const cron = require("node-cron");
-const Shelter = require("../models/Shelter");
+const ShelterController = require("../controllers/ShelterController");
+const RestaurantController = require("../controllers/RestaurantController");
 const sgMail = require("@sendgrid/mail");
 require("dotenv").config();
-// using Twilio SendGrid's v3 Node.js Library
-// https://github.com/sendgrid/sendgrid-nodejs
 sgMail.setApiKey(process.env.LEFTOVER_LINK_EMAIL_KEY);
 
 
 async function sendEmailsToShelters(restaurantsWithFood) {
-  const shelters = await Shelter.find({}); //all the shelters
+  const shelters = await ShelterController.getAllShelters();
   for (const shelter of shelters) {
     //for loop to go through every shelter and send them the message below!
-
     const message = {
       to: process.env.TO_LIST,
       from: process.env.SENDER_EMAIL,
       subject: "Near Expired Food Alert!",
-      text: "and easy to do anywhere, even with Node.js",
       html: `<p>Dear ${shelter.name},</p>
              <p>The following restaurants have near expired food:</p>
              <ul>
@@ -25,8 +22,8 @@ async function sendEmailsToShelters(restaurantsWithFood) {
                    (restaurant) => `
                  <li>
                    <strong>${restaurant.name}</strong>
-                   <br>Location: ${restaurant.location}
-                   <br>Contact: ${restaurant.contact}
+                   <br>Location: ${restaurant.address}
+                   <br>Email: ${restaurant.email}
                  </li>
                `
                  )
@@ -44,7 +41,7 @@ async function sendEmailsToShelters(restaurantsWithFood) {
 }
 
 async function sendMassEmail() {
-  const restaurantsWithFood = await getRestaurantsWithFood();
+  const restaurantsWithFood = await RestaurantController.getRestaurantsWithExpiringFood();
   await sendEmailsToShelters(restaurantsWithFood);
 }
 
