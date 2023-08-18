@@ -50,5 +50,6 @@ async function sendMassEmail() {
 
 // Run the function every day at midnight
 cron.schedule("0 0 * * *", () => {
+  console.log("Running Cron Job");
   sendMassEmail();
 });
