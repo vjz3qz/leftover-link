@@ -52,8 +52,9 @@ export default function Register() {
         <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-center dark:text-white">
             Subscribe
         </h1>
-        <p>
-            Subscribe to get food alerts near you!
+        <p className="text-md lg:text-lg lg:w-full leading-relaxed text-center mb-8 dark:text-gray-300"
+        >
+            Get food alerts near you!
         </p>
         <form className="space-y-4" onSubmit={subscribe}>
           <div className="flex flex-col items-center space-y-4">

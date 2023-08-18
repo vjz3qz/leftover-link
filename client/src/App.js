@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,6 +14,7 @@ import NavigationBar from "./components/NavigationBar";
 import FoodTracker from "./pages/FoodTracker";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Subscribe from "./pages/Subscribe";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function AppContent() {
         <Route path="/login" element={<Login />} />
         <Route path="/food-tracker" element={<FoodTracker />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/subscribe" element={<Subscribe />} />
       </Routes>
     </div>
   );
