@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     const shelters = await find();
     res.json(shelters);
   } catch (err) {
-    res.json({ message: err.message });
+    res.json({ error: 'Failed to get all shelter', originalError: err.message });
   }
 });
 
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
     }
     res.json(shelter);
   } catch (err) {
-    res.json({ message: err.message });
+    res.json({ error: 'Failed to get a shelter', originalError: err.message });
   }
 });
 
