@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Shelter = require('../models/Shelter');
-import convertAddressToCoords from '../utils/LocationService';
+const {convertAddressToCoords} = require('../utils/LocationService');
 
 // Get all shelters
 router.get('/', async (req, res) => {
@@ -30,8 +30,9 @@ router.get('/:id', async (req, res) => {
 router.post('/subscribe', async (req, res) => {
   const { name, address, email } = req.body;
   try {
-    // Created shelter
-    const coordinates = await convertAddressToCoords(address);
+    // Created shelter    
+    // const coordinates = await convertAddressToCoords(address);
+    const coordinates = [0.0, 0.0];
     const shelter = new Shelter({ name, email, address, coordinates });
     const newShelter = await shelter.save();
     // TODO: Add shelter to email list

@@ -15,7 +15,7 @@ export default function Register() {
     ev.preventDefault();
     try {
         // add endpoint to register shelter
-      const response = await fetch("/api/shelter/subscibe", {
+      const response = await fetch("/api/shelters/subscribe", {
         method: "POST",
         body: JSON.stringify({ name, address, email }),
         headers: { "Content-Type": "application/json" },
