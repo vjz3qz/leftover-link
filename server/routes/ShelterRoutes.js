@@ -26,13 +26,15 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Create a new shelter
-router.post('/', async (req, res) => {
+// Create a new shelter and adds to email list
+router.post('/subscribe', async (req, res) => {
   const { name, address, email } = req.body;
   try {
+    // Created shelter
     const coordinates = await convertAddressToCoords(address);
     const shelter = new Shelter({ name, email, address, coordinates });
     const newShelter = await shelter.save();
+    // TODO: Add shelter to email list
     res.status(201).json(newShelter);
   } catch (err) {
     res.status(400).json({ error: 'Failed to create a new shelter', originalError: err.message });
