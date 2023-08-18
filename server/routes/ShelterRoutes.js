@@ -6,7 +6,7 @@ const {convertAddressToCoords} = require('../utils/LocationService');
 // Get all shelters
 router.get('/', async (req, res) => {
   try {
-    const shelters = await Shelter.find();
+    const shelters = await Shelter.find({});
     res.json(shelters);
   } catch (err) {
     res.json({ error: 'Failed to get all shelter', originalError: err.message });
