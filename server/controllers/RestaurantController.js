@@ -1,4 +1,4 @@
-const Restaurant = require('../models/RestaurantModel');
+const Restaurant = require('../models/Restaurant');
 const { convertAddressToCoords } = require('../utils/CoordinatesConverter');
 
 // Get restaurants with expiring food within 3 days

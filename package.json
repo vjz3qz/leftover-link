@@ -1,9 +1,10 @@
 {
     "scripts": {
-      "start": "node server/index.js"
-    },
-    "engines": {
-      "node": "14.x"
+        "start-server": "cd server && npm start",
+        "start-client": "cd client && npm start",
+        "start": "concurrently \"npm run start-server\" \"npm run start-client\""
+      },
+    "devDependencies": {
+        "concurrently": "^8.2.0"
     }
-  }
-  
+}
