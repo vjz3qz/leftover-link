@@ -5,6 +5,7 @@
 - [ ] add subscription service for shelters
     - [ ] extract buttons into components
 - [ ] add to map functionality: info for each marker, food, etc.
+- [ ] clean all routes for continuity. check error messages, and if they are consistent
 - [ ] re enable geocoding/map api
 - [ ] deploy with AWS
 

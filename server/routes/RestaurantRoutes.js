@@ -182,14 +182,16 @@ router.patch('/:id', async (req, res) => {
     if (req.body.name) {
       restaurant.name = req.body.name;
     }
-    if (req.body.location) {
-      restaurant.location = req.body.location;
+    if (req.body.address) {
+      restaurant.address = req.body.address;
     }
     if (req.body.email) {
       restaurant.email = req.body.email;
     }
+    const coordinates = await convertAddressToCoords(req.body.address);
+    restaurant.coordinates = coordinates;
     const updatedRestaurant = await restaurant.save();
-    res.json(updatedRestaurant);
+    res.status(200).json(updatedRestaurant);
   } catch (err) {
     res.status(500).json({ error: 'Failed to update restaurant' });
   }
