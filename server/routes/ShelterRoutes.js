@@ -79,5 +79,3 @@ router.delete('/:id', async (req, res) => {
     res.json({ error: 'Failed to delete a shelter', originalError: err.message });
   }
 });
-
-export default router;
