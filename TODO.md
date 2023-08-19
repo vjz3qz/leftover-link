@@ -10,7 +10,7 @@
     - [ ] check error messages, and if they are consistent
     - [ ] abstract controllers from routes: 
         - [x] shelter
-        - [ ] restaurants
+        - [x] restaurants
         - [ ] food
 - [ ] Restrict api key to only be used at our domain. creat seperate api key for backend
 - [ ] re enable geocoding/map api
