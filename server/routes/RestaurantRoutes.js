@@ -11,34 +11,8 @@ const { convertAddressToCoords } = require('../utils/CoordinatesConverter');
 // TODO: update all error messages and returns
 // TODO: test all requests
 
-const secret = '1234567890asdfghjkl'; // Replace 'your_secret_key_here' with a strong secret key
-
 // Login route
-router.post('/login', async (req, res) => {
-  const { username, password } = req.body;
-  try {
-    const restaurant = await Restaurant.findOne({ username });
-
-    if (!restaurant) {
-      return res.status(404).json({ error: 'Restaurant not found' });
-    }
-
-    const isPasswordValid = bcrypt.compareSync(password, restaurant.password);
-
-    if (isPasswordValid) {
-      const token = jwt.sign({ id: restaurant._id }, secret, { expiresIn: '1h' });
-      res.cookie('token', token, { httpOnly: true, maxAge: 3600000 }).json({
-        id: restaurant._id,
-        username: restaurant.username,
-        message: 'Login successful'
-      });
-    } else {
-      res.status(401).json({ error: 'Invalid username or password' });
-    }
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to login', originalError: err.message });
-  }
-});
+router.post('/login', RestaurantController.restaurantLogin);
 
 // Create a new restaurant with coordinates and register the user
 router.post('/register', async (req, res) => {

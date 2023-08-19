@@ -1,5 +1,38 @@
 const Restaurant = require('../models/Restaurant');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const { convertAddressToCoords } = require('../utils/CoordinatesConverter');
+
+const secret = process.env.JWT_SECRET;
+
+// Login
+async function restaurantLogin(req, res) {
+  const { username, password } = req.body;
+  try {
+    const restaurant = await Restaurant.findOne({ username });
+
+    if (!restaurant) {
+      return res.status(404).json({ error: 'Restaurant not found' });
+    }
+
+    const isPasswordValid = bcrypt.compareSync(password, restaurant.password);
+
+    if (isPasswordValid) {
+      const token = jwt.sign({ id: restaurant._id }, secret, { expiresIn: '1h' });
+      return res.cookie('token', token, { httpOnly: true, maxAge: 3600000 }).json({
+        id: restaurant._id,
+        username: restaurant.username,
+        message: 'Login successful'
+      });
+    } else {
+      return res.status(401).json({ error: 'Invalid username or password' });
+    }
+  } catch (err) {
+    return res.status(500).json({ error: 'Failed to login', originalError: err.message });
+  }
+};
+
+
 
 // Get restaurants with expiring food within 3 days
 async function getRestaurantsWithExpiringFood() {
@@ -40,5 +73,6 @@ async function getRestaurantsWithExpiringFood() {
 }
 
 module.exports = {
+    restaurantLogin,
     getRestaurantsWithExpiringFood
 };

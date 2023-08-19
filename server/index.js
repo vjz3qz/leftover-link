@@ -1,13 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Restaurant = require('./models/Restaurant');
+require('dotenv').config();
 const restaurantRoutes = require('./routes/RestaurantRoutes');
 const foodRoutes = require('./routes/FoodRoutes');
 const shelterRoutes = require('./routes/ShelterRoutes');
 require('./services/NotificationService');
 
 const cors = require('cors');
-require('dotenv').config();
 
 const app = express();
 app.use(cors());

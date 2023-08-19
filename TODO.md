@@ -14,8 +14,23 @@
         - [ ] food
 - [ ] Restrict api key to only be used at our domain. creat seperate api key for backend
 - [ ] re enable geocoding/map api
-- [ ] test if entire app is working (specifically email notifications)
-- [ ] deploy with AWS
+- [ ] test if entire app is working
+    - [ ] database connection
+    - [ ] food inventory
+    - [ ] subscription service
+    - [x] email notifications
+    - [ ] cron job
+    - [ ] login
+    - [ ] register
+    - [ ] map
+    - [ ] food form
+    - [ ] geo location
+    - [ ] geocoding
+- [ ] deployment
+    - [ ] github pages
+    - [ ] aws elastic beanstalk
+    - [ ] mongodb atlas
+    - [ ] domain name
 
 Future Features:
 - [ ] add info window with food info (if logged in as shelter?)
@@ -29,5 +44,5 @@ Future Features:
 - [ ] add scroll down button to landing page
 - [ ] clean code, extract components, etc.
 
-
-sell this after done to  a shelters
+Future Ventures:
+- [ ] sell this after done to a shelters
