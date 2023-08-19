@@ -14,22 +14,26 @@ async function sendEmailsToShelters(restaurantsWithFood) {
       to: process.env.TO_LIST,
       from: process.env.SENDER_EMAIL,
       subject: "Near Expired Food Alert!",
-      html: `<p>Dear ${shelter.name},</p>
-             <p>The following restaurants have near expired food:</p>
-             <ul>
-               ${restaurantsWithFood
-                 .map(
-                   (restaurant) => `
-                 <li>
-                   <strong>${restaurant.name}</strong>
-                   <br>Location: ${restaurant.address}
-                   <br>Email: ${restaurant.email}
-                 </li>
-               `
-                 )
-                 .join("")}
-             </ul>
-             <p>Thank you for your cooperation.</p>`,
+      html: `
+      <p style="font-family: Arial, sans-serif; line-height: 1.5;">Dear ${shelter.name},</p>
+      <p style="font-family: Arial, sans-serif; line-height: 1.5;">The following restaurants have near expired food:</p>
+      <ul style="font-family: Arial, sans-serif; line-height: 1.5; padding-left: 20px;">
+          ${restaurantsWithFood.map(restaurant => `
+              <li style="margin-bottom: 10px;">
+                  <strong style="font-size: 1.1em;">${restaurant.name}</strong>
+                  <br>Location: ${restaurant.address}
+                  <br>Email: ${restaurant.email}
+              </li>
+          `).join("")}
+      </ul>
+      <p style="font-family: Arial, sans-serif; line-height: 1.5;">Thank you for your cooperation.</p>
+      <br>
+      <div style="font-family: Arial, sans-serif; line-height: 1.5;">
+          <p>Best Regards,</p>
+          <p><strong>Leftover Link</strong></p>
+          <p><a href="http://localhost:3000/" style="color: #007BFF; text-decoration: none;">Visit our website</a></p>
+      </div>
+  `  
     };
     try {
       await sgMail.send(message);
