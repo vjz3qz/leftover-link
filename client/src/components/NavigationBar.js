@@ -35,7 +35,7 @@ function NavigationBar() {
 
         <RouterLink
             to="/subscribe"
-            className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center md:mr-2 transition-all duration-300"
+            className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center mr-1 md:mr-2 transition-all duration-300"
         >
             Subscribe
         </RouterLink>
@@ -49,7 +49,7 @@ function NavigationBar() {
               </>
             ) : (<>
               <button 
-              className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center md:mr-2 transition-all duration-300">
+              className="text-white bg-sunset_orange hover:rounded-md hover:bg-another_sunset focus:ring-4 focus:outline-none focus:bg-another_sunset dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:bg-gray-600 font-medium rounded-lg text-sm px-4 py-2 text-center mr-1 md:mr-2 transition-all duration-300">
                 {"Hello, " + userInfo?.username + "!"}
               </button>
               <button 
