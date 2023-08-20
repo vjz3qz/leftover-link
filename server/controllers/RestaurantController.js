@@ -3,7 +3,6 @@ const Food = require('../models/Food');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { convertAddressToCoords } = require('../utils/CoordinatesConverter');
-const { get } = require('mongoose');
 
 const secret = process.env.JWT_SECRET;
 
