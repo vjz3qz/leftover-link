@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/leftover-link/static/css/main.061a97da.css",
+    "main.js": "/leftover-link/static/js/main.4b9b4bb4.js",
+    "index.html": "/leftover-link/index.html",
+    "main.061a97da.css.map": "/leftover-link/static/css/main.061a97da.css.map",
+    "main.4b9b4bb4.js.map": "/leftover-link/static/js/main.4b9b4bb4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.061a97da.css",
+    "static/js/main.4b9b4bb4.js"
+  ]
+}
