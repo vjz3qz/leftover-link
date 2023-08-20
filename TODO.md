@@ -12,7 +12,7 @@
         - [x] shelter
         - [x] restaurants
         - [ ] food
-- [ ] Restrict api key to only be used at our domain. creat seperate api key for backend
+- [ ] Restrict api key to only be used at our domain. creat seperate api key for backend. UPDATE APIKEY
 - [ ] re enable geocoding/map api
 - [ ] test if entire app is working
     - [ ] database connection

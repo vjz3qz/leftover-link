@@ -10,6 +10,8 @@ server/node_modules/
 .pnp.js
 .DS_Store
 .env
+.env.development
+.env.production
 package-lock.json
 
 # testing
