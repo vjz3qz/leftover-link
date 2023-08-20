@@ -3,6 +3,7 @@ import GoogleMapReact from "google-map-react";
 import axios from "axios";
 
 const api_key = process.env.REACT_APP_API_KEY;
+const API_URL = process.env.REACT_APP_API_URL;
 
 const Map = () => {
   const defaultProps = {
@@ -19,7 +20,7 @@ const Map = () => {
   useEffect(() => {
     const fetchExpiredRestaurants = async () => {
       try {
-        const response = await axios.get("/api/restaurants/");
+        const response = await axios.get(`${API_URL}/api/restaurants/`);
         const expiredRestaurants = response.data;
         const restaurantMarkers = expiredRestaurants.map((restaurant) => ({
           lat: restaurant.coordinates[0],

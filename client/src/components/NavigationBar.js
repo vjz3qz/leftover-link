@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { Link as ScrollLink } from "react-scroll";
 import { Link as RouterLink } from "react-router-dom";
+const API_URL = process.env.REACT_APP_API_URL;
 
 function NavigationBar() {
   const { userInfo, setUserInfo } = useContext(UserContext);
@@ -56,7 +57,7 @@ function NavigationBar() {
               onClick={() => {
                 setUserInfo(null);
                 try {
-                  const response = fetch("/api/restaurants/logout", {
+                  const response = fetch(`${API_URL}/api/restaurants/logout`, {
                     method: "POST",
                   });
                 } catch (err) {

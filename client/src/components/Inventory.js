@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../contexts/UserContext'; // Import the UserContext if not already imported
+import { UserContext } from '../contexts/UserContext';
+const API_URL = process.env.REACT_APP_API_URL;
+
 
 const Inventory = () => {
     const { userInfo } = useContext(UserContext);
@@ -12,7 +14,7 @@ const Inventory = () => {
     // Fetch the restaurant data and its inventory items from your API
     const fetchInventoryData = async () => {
       try {
-        const response = await fetch(`/api/restaurants/by-id/${restaurantId}/get-all-food`);
+        const response = await fetch(`${API_URL}/api/restaurants/by-id/${restaurantId}/get-all-food`);
         if (response.ok) {
           const data = await response.json();
           setInventoryItems(data); // Update the inventoryItems state with the received data

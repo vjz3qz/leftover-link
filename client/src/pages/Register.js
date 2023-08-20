@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -18,7 +19,7 @@ export default function Register() {
   async function register(ev) {
     ev.preventDefault();
     try {
-      const response = await fetch("/api/restaurants/register", {
+      const response = await fetch(`${API_URL}/api/restaurants/register`, {
         method: "POST",
         body: JSON.stringify({ username, password, name, address, email }),
         headers: { "Content-Type": "application/json" },

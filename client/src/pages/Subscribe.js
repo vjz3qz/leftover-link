@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -15,7 +16,7 @@ export default function Register() {
     ev.preventDefault();
     try {
         // add endpoint to register shelter
-      const response = await fetch("/api/shelters/subscribe", {
+      const response = await fetch(`${API_URL}/api/shelters/subscribe`, {
         method: "POST",
         body: JSON.stringify({ name, address, email }),
         headers: { "Content-Type": "application/json" },

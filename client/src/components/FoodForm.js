@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from '../contexts/UserContext';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const FoodForm = () => {
   const { userInfo } = useContext(UserContext);
@@ -22,7 +23,7 @@ const FoodForm = () => {
       };
 
       const response = await fetch(
-        `/api/restaurants/add-food/${restaurantId}`,
+        `${API_URL}/api/restaurants/add-food/${restaurantId}`,
         {
           method: "PATCH",
           headers: {
