@@ -3,6 +3,7 @@ const Food = require('../models/Food');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { convertAddressToCoords } = require('../utils/CoordinatesConverter');
+const { get } = require('mongoose');
 
 const secret = process.env.JWT_SECRET;
 
@@ -131,31 +132,21 @@ async function getRestaurantsWithExpiringFood() {
 }
 
 async function getRestaurantById(req, res) {
-  getRestaurant(req, res, 'id');
-}
-
-async function getRestaurantByUsername(req, res) {
-  getRestaurant(req, res, 'username');
-}
-
-async function getRestaurant(req, res, findBy) {
-  let restaurant = null;
-  
   try {
-    if (findBy === 'id') {
-      restaurant = await Restaurant.findById(req.params.id);
-    } else if (findBy === 'username') {
-      restaurant = await Restaurant.findOne({ username: req.params.username });
-    }
+    const restaurant = await Restaurant.findById(req.params.id);
+    getRestaurant(restaurant);
   } catch (err) {
     return res.status(500).json({ error: 'Failed to retrieve restaurant', originalError: err.message });
   }
-  
-  if (!restaurant) {
-    return res.status(404).json({ error: 'Restaurant not found' });
+}
+
+async function getRestaurantByUsername(req, res) {
+  try {
+      const restaurant = await Restaurant.findOne({ username: req.params.username });
+      getRestaurant(restaurant);
+  } catch (err) {
+    return res.status(500).json({ error: 'Failed to retrieve restaurant', originalError: err.message });
   }
-  
-  return res.json(restaurant);
 }
 
 const getRestaurant =  (restaurant) => {
