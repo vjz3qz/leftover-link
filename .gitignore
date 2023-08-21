@@ -18,7 +18,7 @@ package-lock.json
 /coverage
 
 # production
-/client/build
+/frontend/build
 
 .vscode
 
